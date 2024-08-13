@@ -392,7 +392,7 @@ def recopilatorio_simulaciones(puerta_logica_flip_flop_implementacion):
 if __name__ == "__main__":
 #* descomenten para sumular alguna puerta logica, flip flop o implementacion
     print("hola")
-    #recopilatorio_simulaciones("and")
+    recopilatorio_simulaciones("and")
     #recopilatorio_simulaciones("or")
     #recopilatorio_simulaciones("not") 
     #recopilatorio_simulaciones("xor")
