@@ -186,8 +186,8 @@ def boton(ventana, boton_rect, valor_boton): # dibuja el boton y su texto
     texto = MAIN_FONT.render(str(valor_boton),True, NEGRO)
     ventana.blit(texto,(boton_rect.x+(boton_rect.width-texto.get_width())/2, boton_rect.y+(boton_rect.height-texto.get_height())/2))
 
-def menu(ventana, ANCHO, ALTO):
-    menu_rect = Rect(ANCHO/2.3, ALTO/2.3, 100, 60)
+def menu(ventana, ALTO, ANCHO):
+    menu_rect = Rect(ALTO/2.3, ANCHO/2.3, 100, 60)
     boton(ventana, menu_rect, "Iniciar")
     for evento in event.get():
         if evento.type == QUIT:
@@ -208,14 +208,14 @@ time.set_timer(temporizador, 500)  # Cambia el estado del botón cada medio segu
 valor_clock = 0
 
 # configuraciones generales y algunas constantes
-ANCHO = 600
-ALTO = 80
+ALTO = 600
+ANCHO = 80
 FPS = 30
 BLANCO = (255, 255, 255)
 NEGRO = (0, 0, 0)
 
 # configuracion pantalla
-VENTANA = display.set_mode((ALTO, ANCHO))
+VENTANA = display.set_mode((ANCHO, ALTO))
 display.set_caption('"simulacion digital"')
 display.set_icon(image.load("imagenes\\error_418.png"))
 MAIN_FONT = font.SysFont("cambria", 35)
@@ -225,7 +225,7 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
     estado_anterior = [0, 1]
     puerta_grafico = image.load(direccion_imagen) # carga la  imagen
     puerta_grafico = transform.scale(puerta_grafico, (650, 450))
-    puerta_grafico_rect = puerta_grafico.get_rect(center = (ALTO/2, ANCHO/2)) # posicion de la imagen
+    puerta_grafico_rect = puerta_grafico.get_rect(center = (ANCHO/2, ALTO/2)) # posicion de la imagen
     botones_input_rect = armador_boton_rect(tipo_puerta, "input", cantidad_botones_input) # botones de input
     botones_input_valor = [0]*cantidad_botones_input
     botones_output = armador_boton_rect(tipo_puerta, "output", cantidad_botones_output) # botones de output
@@ -238,7 +238,7 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
     while True:
         # limpiar la pantalla
         VENTANA.fill(BLANCO)
-        iniciar  = menu(VENTANA, ALTO, ANCHO)
+        iniciar  = menu(VENTANA, ANCHO, ALTO)
         if iniciar:
             break
         display.update()
@@ -250,7 +250,7 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
         # dibujar la puerta logica
         VENTANA.blit(puerta_grafico, puerta_grafico_rect)
         # dibujar el texto de la imagen
-        VENTANA.blit(MAIN_FONT.render(f"{tipo_puerta.replace('_',' ')}", True, "black"), (ANCHO/2, 25)) # texto de la imagen
+        VENTANA.blit(MAIN_FONT.render(f"{tipo_puerta.replace('_',' ')}", True, "black"), (ALTO/2, 25)) # texto de la imagen
         # dibujar los botones
         for i in range(cantidad_botones_input):
             boton(VENTANA, botones_input_rect[i], botones_input_valor[i])
@@ -307,7 +307,7 @@ def simulacion_contadores(cantidad_botones_input, cantidad_botones_output, direc
         # dibujar la puerta logica
         VENTANA.blit(puerta_grafico, puerta_grafico_rect)
         # dibujar el texto de la imagen
-        VENTANA.blit(MAIN_FONT.render(f"{tipo_puerta.replace("_"," ")}", True, "black"), (ANCHO/2.3, 100)) # texto de la imagen
+        VENTANA.blit(MAIN_FONT.render(f"{tipo_puerta.replace("_"," ")}", True, "black"), (ALTO/2.3, 100)) # texto de la imagen
         # dibujar los botones
         for i in range(cantidad_botones_input):
             boton(VENTANA, botones_input_rect[i], botones_input_valor[i])
