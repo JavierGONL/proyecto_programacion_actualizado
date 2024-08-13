@@ -209,7 +209,7 @@ valor_clock = 0
 
 # configuraciones generales y algunas constantes
 ALTO = 600
-ANCHO = 80
+ANCHO = 800
 FPS = 30
 BLANCO = (255, 255, 255)
 NEGRO = (0, 0, 0)
