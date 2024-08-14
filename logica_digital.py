@@ -160,6 +160,9 @@ def multiplicador_4bits(a0,a1,b0,b1):
     m3 = puerta_and(puerta_and(a1,b1),puerta_and(puerta_and(a1,b0),puerta_and(a0,b1)))
     return m0,m1,m2,m3
 
+def divisor_4_Bits(a0, a1, b0, b1):
+    pass
+
 def comparador_2_bits(a0, a1, b0, b1):
     # #x=resultados del igual
     # #y= resultantes del menor
