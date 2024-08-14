@@ -62,8 +62,9 @@ funciones_logicas = {
         "escala": [400,200]
     },
     "rs_flip_flop" : {
-        "input": [(210, 540),(210, 260)],
-        "output": [(800, 280),(800, 510)]
+        "input": [(130, 420), (130, 160)],
+        "output": [(630, 190),(630, 380)],
+        "escala": [700,400]
     },
     "sr_flip_flop" : {
         "input": [(220, 240), (220, 550)],
@@ -272,7 +273,9 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
         for evento in event.get():
             if evento.type == QUIT:
                 sys.exit() 
-            if evento.type == MOUSEBUTTONDOWN and mouse.get_pressed()[0]:
+            if evento.type == MOUSEBUTTONDOWN:
+                print(pos_mouse)
+            if evento.type == MOUSEBUTTONDOWN and mouse.get_pressed(3)[0]:
                 for i in range(cantidad_botones_input):
                     if botones_input_rect[i].collidepoint(pos_mouse):
                         botones_input_valor[i] = puerta_not(botones_input_valor[i])
@@ -389,8 +392,8 @@ if __name__ == "__main__":
     #recopilatorio_simulaciones("xor")
     #recopilatorio_simulaciones("nand")
     #recopilatorio_simulaciones("nor")
-    recopilatorio_simulaciones("xnor")
-    #recopilatorio_simulaciones("rs_flip_flop") 
+    #recopilatorio_simulaciones("xnor")
+    recopilatorio_simulaciones("rs_flip_flop") 
     #recopilatorio_simulaciones("sr_flip_flop") 
     #recopilatorio_simulaciones("jk_flip_flop")
     #recopilatorio_simulaciones("d_flip_flop") 
