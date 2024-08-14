@@ -26,36 +26,45 @@ from logica_digital import *
 
 funciones_logicas = {
     "and" : {
-        "input": [(190, 340), (190, 460)],
-        "output": [(620, 400)]
+        "input": [(180, 240), (180, 325)],
+        "output": [(580, 280)],
+        "escala": [400,200]
     },
     "or" : {
-        "input": [(175, 335), (175, 465)],
-        "output": [(825, 400)]
+        "input": [(180, 240), (180, 325)],
+        "output": [(580, 280)],
+        "escala": [400,200]
     },
     "not" : {
-        "input": [(170, 400)],
-        "output": [(830, 400)]
+        "input": [(180, 280)],
+        "output": [(580, 280)],
+        "escala": [400,200]
     },
     "xor" : {
-        "input": [(150, 330), (150, 470)],
-        "output": [(855, 400)]
+        "input": [(180, 240), (180, 325)],
+        "output": [(580, 280)],
+        "escala": [400,200]
+
     },
     "nand" : {
-        "input": [(200, 340), (200, 460)],
-        "output": [(800, 400)]
+        "input": [(180, 240), (180, 325)],
+        "output": [(580, 280)],
+        "escala": [400,200]
     },
     "nor" : {
-        "input": [(190, 340), (190, 460)],
-        "output": [(810, 400)]
+        "input": [(180, 240), (180, 325)],
+        "output": [(580, 280)],
+        "escala": [400,200]
     },
     "xnor" : {
-        "input": [(190, 340), (190, 460)],
-        "output": [(810, 400)]
+        "input": [(180, 240), (180, 325)],
+        "output": [(580, 280)],
+        "escala": [400,200]
     },
     "rs_flip_flop" : {
-        "input": [(210, 540),(210, 260)],
-        "output": [(800, 280),(800, 510)]
+        "input": [(130, 420), (130, 160)],
+        "output": [(630, 190),(630, 380)],
+        "escala": [700,400]
     },
     "sr_flip_flop" : {
         "input": [(220, 240), (220, 550)],
@@ -223,8 +232,10 @@ MAIN_FONT = font.SysFont("cambria", 35)
 # funcion que  crea las simulaciones
 def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen , tipo_puerta, puerta_logica_flip_flop_implementacion = "puerta_logica"):
     estado_anterior = [0, 1]
+    escala_grafico = funciones_logicas[tipo_puerta]["escala"]
+    print(escala_grafico)
     puerta_grafico = image.load(direccion_imagen) # carga la  imagen
-    puerta_grafico = transform.scale(puerta_grafico, (650, 450))
+    puerta_grafico = transform.scale(puerta_grafico, (escala_grafico))
     puerta_grafico_rect = puerta_grafico.get_rect(center = (ANCHO/2, ALTO/2)) # posicion de la imagen
     botones_input_rect = armador_boton_rect(tipo_puerta, "input", cantidad_botones_input) # botones de input
     botones_input_valor = [0]*cantidad_botones_input
@@ -257,12 +268,14 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
         if puerta_logica_flip_flop_implementacion != "puerta_logica" and puerta_logica_flip_flop_implementacion != "implementacion":
             if tipo_puerta != "rs_flip_flop":    
                 boton(VENTANA, clock_rect, valor_clock)
-        # eventos 
+        # eventos
         pos_mouse = mouse.get_pos()
         for evento in event.get():
             if evento.type == QUIT:
                 sys.exit() 
-            if evento.type == MOUSEBUTTONDOWN and mouse.get_pressed()[0]:
+            if evento.type == MOUSEBUTTONDOWN:
+                print(pos_mouse)
+            if evento.type == MOUSEBUTTONDOWN and mouse.get_pressed(3)[0]:
                 for i in range(cantidad_botones_input):
                     if botones_input_rect[i].collidepoint(pos_mouse):
                         botones_input_valor[i] = puerta_not(botones_input_valor[i])
@@ -281,19 +294,15 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
         display.update()
 
 def simulacion_contadores(cantidad_botones_input, cantidad_botones_output, direccion_imagen , tipo_puerta, puerta_logica_flip_flop_implementacion = "puerta_logica"):
-    # estado_anterior = [0,0,0,0]
-    # resultado = import_puertas(tipo_puerta, valor_clock, estado_anterior, *botones_input_valor)
-    # for i in range(3)
-    #    estado_anterior[i + 1] = import_puertas(tipo_puerta, estado_anterior, estado_anterior[i+1], *botones_input_valor)
-    estado_anterior_1 = 0 # estado anterior de los flip flops
-    estado_anterior_2 = 0 # estado anterior de los flip flops
-    estado_anterior_3 = 0 # estado anterior de los flip flops
-    estado_anterior_4 = 0 # estado anterior de los flip flops
+    estado_anterior = [0,0,0,0]
+    # estado_anterior_1 = 0 # estado anterior de los flip flops
+    # estado_anterior_2 = 0 # estado anterior de los flip flops
+    # estado_anterior_3 = 0 # estado anterior de los flip flops
+    # estado_anterior_4 = 0 # estado anterior de los flip flops
     puerta_grafico = image.load(direccion_imagen)
     puerta_grafico = transform.scale(puerta_grafico, (800, 600))
     puerta_grafico_rect = puerta_grafico.get_rect(center=(800,600))
     botones_input_rect = armador_boton_rect(tipo_puerta, "input", cantidad_botones_input) # botones de input
-    print(botones_input_rect)
     botones_input_valor = [0]*cantidad_botones_input
     botones_output = armador_boton_rect(tipo_puerta, "output", cantidad_botones_output) # botones de output
     global valor_clock
@@ -321,30 +330,15 @@ def simulacion_contadores(cantidad_botones_input, cantidad_botones_output, direc
             if evento.type == MOUSEBUTTONDOWN:
                 for i in range(cantidad_botones_input):
                     if botones_input_rect[i].collidepoint(pos_mouse):
-                        if  botones_input_valor[i] == 0:
-                            botones_input_valor[i] = 1
-                        elif botones_input_valor[i] == 1:
-                            botones_input_valor[i] = 0
+                        botones_input_valor[i] = puerta_not(botones_input_valor[i])
             if evento.type == temporizador: # temporizador 
                 valor_clock = actualizar_reloj() # actualziar el reloj por el valor 1 o 0
                 if valor_clock == 1: 
-                        resultado_puerta_1 = contador_4_bits(botones_input_valor, valor_clock, estado_anterior_1)
-                        print(f"1 {estado_anterior_1} {resultado_puerta_1}")
-                        resultado_puerta_2 = contador_4_bits(botones_input_valor, estado_anterior_1, estado_anterior_2)
-                        print(f"2 {estado_anterior_2}   {resultado_puerta_2}")
-                        estado_anterior_1 = resultado_puerta_1
-                        estado_anterior_2 = resultado_puerta_2
-                        boton(VENTANA, botones_output[0], resultado_puerta_1)
-                        boton(VENTANA, botones_output[1], resultado_puerta_2)
-                        if estado_anterior_1 == 1 and  estado_anterior_2 == 1:
-                            resultado_puerta_3 = contador_4_bits(botones_input_valor, estado_anterior_2,  estado_anterior_3)
-                            print(f"3 {estado_anterior_3}   {resultado_puerta_3}")
-                            resultado_puerta_4 = contador_4_bits(botones_input_valor, estado_anterior_3, estado_anterior_4)
-                            print(f"4 {estado_anterior_4}   {resultado_puerta_4}")
-                            estado_anterior_3 = resultado_puerta_3 
-                            estado_anterior_4 = resultado_puerta_4 
-                            boton(VENTANA, botones_output[2], resultado_puerta_3)
-                            boton(VENTANA, botones_output[3], resultado_puerta_4)
+                        estado_anterior[0] = import_puertas(tipo_puerta, valor_clock, estado_anterior, *botones_input_valor)
+                        for i in range(3):
+                            estado_anterior[i + 1] = estado_anterior[i + 1]
+            for i in range(cantidad_botones_output):
+                boton(VENTANA, botones_output[0], estado_anterior[0])          
         display.update()
 
 # funcion que recopila las simulaciones
@@ -399,7 +393,7 @@ if __name__ == "__main__":
     #recopilatorio_simulaciones("nand")
     #recopilatorio_simulaciones("nor")
     #recopilatorio_simulaciones("xnor")
-    #recopilatorio_simulaciones("rs_flip_flop") 
+    recopilatorio_simulaciones("rs_flip_flop") 
     #recopilatorio_simulaciones("sr_flip_flop") 
     #recopilatorio_simulaciones("jk_flip_flop")
     #recopilatorio_simulaciones("d_flip_flop") 
@@ -410,5 +404,5 @@ if __name__ == "__main__":
     #recopilatorio_simulaciones("restador_total")
     #recopilatorio_simulaciones("multiplicador_4bits")
     #recopilatorio_simulaciones("comparador_2_bits")
-    # recopilatorio_simulaciones("contador_4_bits") # marca nonetypes buscar que lo causa
+    #recopilatorio_simulaciones("contador_4_bits") # marca nonetypes buscar que lo causa
 # fin
