@@ -231,6 +231,7 @@ MAIN_FONT = font.SysFont("cambria", 35)
 
 # funcion que  crea las simulaciones
 def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen , tipo_puerta, puerta_logica_flip_flop_implementacion = "puerta_logica",modo_abierto=False):
+    bandera_menu=True
     estado_anterior = [0, 1]
     escala_grafico = funciones_logicas[tipo_puerta]["escala"]
     print(escala_grafico)
@@ -259,7 +260,7 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
         if iniciar:
             break
         display.update()
-    while True:
+    while bandera_menu==True:
         # Limita el bucle a 60 fotogramas por segundo
         clock.tick(FPS)
         # limpiar la pantalla
@@ -283,7 +284,7 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
         for evento in event.get():
             if evento.type == QUIT:
                 sys.exit() 
-            if evento.type == MOUSEBUTTONDOWN:
+            #if evento.type == MOUSEBUTTONDOWN:
                 print(pos_mouse)
             if evento.type == MOUSEBUTTONDOWN and mouse.get_pressed(3)[0]:
                 for i in range(cantidad_botones_input):
@@ -296,6 +297,8 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
                     estado_anterior = resultado
                 else:
                     resultado = estado_anterior
+            if evento.type== MOUSEBUTTONDOWN and mouse.get_pressed(3)[0] : #verificar si se pulsó un botón de navegación
+                print("quesito")
         for i in range(cantidad_botones_output):
             if puerta_logica_flip_flop_implementacion == "puerta_logica":
                 boton(VENTANA, botones_output[i], resultado)
