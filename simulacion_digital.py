@@ -472,7 +472,7 @@ def recopilatorio_simulaciones_narrado(puerta_logica_flip_flop_implementacion):
     if puerta_logica_flip_flop_implementacion == "and":
         simulacion_narrada(2, 1, "imagenes\\puertas_logicas\\puerta_and.png", "and","puerta_logica","narraciones/raindrops.mp3")
     elif puerta_logica_flip_flop_implementacion == "or":
-        simulacion_narrada(2, 1, "imagenes\\puertas_logicas\\puerta_or.png", "or", "puerta_logica","narraciones/raindrops.mp3")
+        simulacion_narrada(2, 1, "imagenes\\puertas_logicas\\puerta_or.png", "or", "puerta_logica","narraciones/hekireki.mp3")
         #inserte narración
     elif puerta_logica_flip_flop_implementacion == "not":
         simulacion_narrada(1, 1, "imagenes\\puertas_logicas\\puerta_not.png", "not", "puerta_logica")
