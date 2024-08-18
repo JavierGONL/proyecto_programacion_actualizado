@@ -231,7 +231,7 @@ MAIN_FONT = font.SysFont("cambria", 35)
 
 # funcion que  crea las simulaciones
 def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen , tipo_puerta, puerta_logica_flip_flop_implementacion = "puerta_logica",modo_abierto=False):
-    bandera_menu=True
+    bandera_menu=False
     estado_anterior = [0, 1]
     escala_grafico = funciones_logicas[tipo_puerta]["escala"]
     print(escala_grafico)
@@ -254,57 +254,58 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
                 clock_rect = armador_boton_rect(tipo_puerta, "clock", 1)
     resultado = [0]*cantidad_botones_output
     while True:
-        # limpiar la pantalla
-        VENTANA.fill(BLANCO)
-        iniciar  = menu(VENTANA, ANCHO, ALTO)
-        if iniciar:
-            break
-        display.update()
-    while bandera_menu==True:
-        # Limita el bucle a 60 fotogramas por segundo
-        clock.tick(FPS)
-        # limpiar la pantalla
-        VENTANA.fill(BLANCO)
-        # dibujar la puerta logica
-        VENTANA.blit(puerta_grafico, puerta_grafico_rect)
-        # dibujar el texto de la imagen
-        VENTANA.blit(MAIN_FONT.render(f"{tipo_puerta.replace('_',' ')}", True, "black"), (ALTO/2, 25)) # texto de la imagen
-        #dibujar los botones de navegacion:
-        VENTANA.blit(boton_retroceder_menu,boton_retroceder_rect_menu)
-        if modo_abierto==False:
-            VENTANA.blit(boton_avanzar,boton_avanzar_rect)       
-        # dibujar los botones
-        for i in range(cantidad_botones_input):
-            boton(VENTANA, botones_input_rect[i], botones_input_valor[i])
-        if puerta_logica_flip_flop_implementacion != "puerta_logica" and puerta_logica_flip_flop_implementacion != "implementacion":
-            if tipo_puerta != "rs_flip_flop":    
-                boton(VENTANA, clock_rect, valor_clock)
-        # eventos
-        pos_mouse = mouse.get_pos()
-        for evento in event.get():
-            if evento.type == QUIT:
-                sys.exit() 
-            #if evento.type == MOUSEBUTTONDOWN:
-                print(pos_mouse)
-            if evento.type == MOUSEBUTTONDOWN and mouse.get_pressed(3)[0]:
-                for i in range(cantidad_botones_input):
-                    if botones_input_rect[i].collidepoint(pos_mouse):
-                        botones_input_valor[i] = puerta_not(botones_input_valor[i])
-            if evento.type == temporizador: # temporizador 
-                valor_clock = actualizar_reloj(valor_clock) # actualziar el reloj por el valor 1 o 0
-                if valor_clock == 1 or puerta_logica_flip_flop_implementacion != "flip_flop":
-                    resultado = import_puertas(tipo_puerta, valor_clock , estado_anterior, *botones_input_valor)
-                    estado_anterior = resultado
+        while bandera_menu==False:
+            # limpiar la pantalla
+            VENTANA.fill(BLANCO)
+            iniciar  = menu(VENTANA, ANCHO, ALTO)
+            if iniciar:
+                bandera_menu=True
+            display.update()
+        while bandera_menu==True:
+            # Limita el bucle a 60 fotogramas por segundo
+            clock.tick(FPS)
+            # limpiar la pantalla
+            VENTANA.fill(BLANCO)
+            # dibujar la puerta logica
+            VENTANA.blit(puerta_grafico, puerta_grafico_rect)
+            # dibujar el texto de la imagen
+            VENTANA.blit(MAIN_FONT.render(f"{tipo_puerta.replace('_',' ')}", True, "black"), (ALTO/2, 25)) # texto de la imagen
+            #dibujar los botones de navegacion:
+            VENTANA.blit(boton_retroceder_menu,boton_retroceder_rect_menu)
+            if modo_abierto==False:
+                VENTANA.blit(boton_avanzar,boton_avanzar_rect)       
+            # dibujar los botones
+            for i in range(cantidad_botones_input):
+                boton(VENTANA, botones_input_rect[i], botones_input_valor[i])
+            if puerta_logica_flip_flop_implementacion != "puerta_logica" and puerta_logica_flip_flop_implementacion != "implementacion":
+                if tipo_puerta != "rs_flip_flop":    
+                    boton(VENTANA, clock_rect, valor_clock)
+            # eventos
+            pos_mouse = mouse.get_pos()
+            for evento in event.get():
+                if evento.type == QUIT:
+                    sys.exit() 
+                #if evento.type == MOUSEBUTTONDOWN:
+                    print(pos_mouse)
+                if evento.type == MOUSEBUTTONDOWN and mouse.get_pressed(3)[0]:
+                    for i in range(cantidad_botones_input):
+                        if botones_input_rect[i].collidepoint(pos_mouse):
+                            botones_input_valor[i] = puerta_not(botones_input_valor[i])
+                if evento.type == temporizador: # temporizador 
+                    valor_clock = actualizar_reloj(valor_clock) # actualziar el reloj por el valor 1 o 0
+                    if valor_clock == 1 or puerta_logica_flip_flop_implementacion != "flip_flop":
+                        resultado = import_puertas(tipo_puerta, valor_clock , estado_anterior, *botones_input_valor)
+                        estado_anterior = resultado
+                    else:
+                        resultado = estado_anterior
+                if evento.type== MOUSEBUTTONDOWN and mouse.get_pressed(3)[0] and (pos_mouse[0]<=203 and pos_mouse[1]<=77) : #verificar si se pulsó un botón de navegación
+                    bandera_menu=False
+            for i in range(cantidad_botones_output):
+                if puerta_logica_flip_flop_implementacion == "puerta_logica":
+                    boton(VENTANA, botones_output[i], resultado)
                 else:
-                    resultado = estado_anterior
-            if evento.type== MOUSEBUTTONDOWN and mouse.get_pressed(3)[0] : #verificar si se pulsó un botón de navegación
-                print("quesito")
-        for i in range(cantidad_botones_output):
-            if puerta_logica_flip_flop_implementacion == "puerta_logica":
-                boton(VENTANA, botones_output[i], resultado)
-            else:
-                boton(VENTANA, botones_output[i], resultado[i])
-        display.update()
+                    boton(VENTANA, botones_output[i], resultado[i])
+            display.update()
 
 def simulacion_contadores(cantidad_botones_input, cantidad_botones_output, direccion_imagen , tipo_puerta, puerta_logica_flip_flop_implementacion = "puerta_logica"):
     estado_anterior = [0,0,0,0]
