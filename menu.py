@@ -1,4 +1,4 @@
 from simulacion_digital import *
 puerta=["and","or"]
-recopilatorio_simulaciones(puerta[0])
-recopilatorio_simulaciones(puerta[1])
+recopilatorio_simulaciones_narrado(puerta[0])
+recopilatorio_simulaciones_narrado(puerta[1])
