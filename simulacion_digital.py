@@ -23,6 +23,7 @@
 from pygame import *
 import sys
 from logica_digital import *
+from playsound import playsound
 
 funciones_logicas = {
     "and" : {
@@ -230,8 +231,7 @@ display.set_icon(image.load("imagenes\\error_418.png"))
 MAIN_FONT = font.SysFont("cambria", 35)
 # funcion que  crea las simulaciones
 bandera_menu=False
-def simulacion(cantidad_botones_input,cantidad_botones_output, direccion_imagen ,tipo_puerta, puerta_logica_flip_flop_implementacion,bandera_menu=False,
-                bandera_simulacion=True):
+def simulacion(cantidad_botones_input,cantidad_botones_output, direccion_imagen ,tipo_puerta, puerta_logica_flip_flop_implementacion,bandera_menu=False):
     estado_anterior = [0, 1]
     escala_grafico = funciones_logicas[tipo_puerta]["escala"]
     print(escala_grafico)
@@ -250,7 +250,7 @@ def simulacion(cantidad_botones_input,cantidad_botones_output, direccion_imagen 
                 global valor_clock
                 clock_rect = armador_boton_rect(tipo_puerta, "clock", 1)
     resultado = [0]*cantidad_botones_output
-    while bandera_simulacion==True:
+    while True:
         while bandera_menu==True:
             # limpiar la pantalla
             VENTANA.fill(BLANCO)
@@ -394,8 +394,8 @@ def recopilatorio_simulaciones(puerta_logica_flip_flop_implementacion):
         simulacion_contadores(1, 4, "imagenes\\implementaciones\\contador_4_bits.png", "contador_4_bits", "implementacion")
         
 #recopilación simulaciones narradas
-def simulacion_narrada(cantidad_botones_input,cantidad_botones_output, direccion_imagen ,tipo_puerta, puerta_logica_flip_flop_implementacion,bandera_menu=False,
-               modo_abierto=False,bandera_simulacion=True):
+def simulacion_narrada(cantidad_botones_input,cantidad_botones_output, direccion_imagen ,tipo_puerta, puerta_logica_flip_flop_implementacion,direccion_narracion,bandera_menu=False,
+               modo_abierto=False):
     estado_anterior = [0, 1]
     escala_grafico = funciones_logicas[tipo_puerta]["escala"]
     print(escala_grafico)
@@ -408,13 +408,15 @@ def simulacion_narrada(cantidad_botones_input,cantidad_botones_output, direccion
     botones_input_rect = armador_boton_rect(tipo_puerta, "input", cantidad_botones_input) # botones de input
     botones_input_valor = [0]*cantidad_botones_input
     botones_output = armador_boton_rect(tipo_puerta, "output", cantidad_botones_output) # botones de output
+    mixer.music.load(direccion_narracion)
     if puerta_logica_flip_flop_implementacion != "puerta_logica":
         if tipo_puerta != "rs_flip_flop":
             if puerta_logica_flip_flop_implementacion != "implementacion":
                 global valor_clock
                 clock_rect = armador_boton_rect(tipo_puerta, "clock", 1)
     resultado = [0]*cantidad_botones_output
-    while bandera_simulacion==True:
+    while True:
+        mixer.music.play(1)
         while bandera_menu==True:
             # limpiar la pantalla
             VENTANA.fill(BLANCO)
@@ -468,10 +470,9 @@ def simulacion_narrada(cantidad_botones_input,cantidad_botones_output, direccion
             display.update()
 def recopilatorio_simulaciones_narrado(puerta_logica_flip_flop_implementacion):
     if puerta_logica_flip_flop_implementacion == "and":
-        simulacion_narrada(2, 1, "imagenes\\puertas_logicas\\puerta_and.png", "and","puerta_logica")
-        #inserte narración
+        simulacion_narrada(2, 1, "imagenes\\puertas_logicas\\puerta_and.png", "and","puerta_logica","narraciones/raindrops.mp3")
     elif puerta_logica_flip_flop_implementacion == "or":
-        simulacion_narrada(2, 1, "imagenes\\puertas_logicas\\puerta_or.png", "or", "puerta_logica")
+        simulacion_narrada(2, 1, "imagenes\\puertas_logicas\\puerta_or.png", "or", "puerta_logica","narraciones/raindrops.mp3")
         #inserte narración
     elif puerta_logica_flip_flop_implementacion == "not":
         simulacion_narrada(1, 1, "imagenes\\puertas_logicas\\puerta_not.png", "not", "puerta_logica")
@@ -485,6 +486,7 @@ def recopilatorio_simulaciones_narrado(puerta_logica_flip_flop_implementacion):
         simulacion_narrada(2, 1, "imagenes\\puertas_logicas\\puerta_nor.png", "nor", "puerta_logica")
     elif puerta_logica_flip_flop_implementacion == "xnor":
         simulacion_narrada(2, 1, "imagenes\\puertas_logicas\\puerta_xnor.png", "xnor", "puerta_logica")
+        #narracion
     elif puerta_logica_flip_flop_implementacion == "rs_flip_flop":
         simulacion_narrada(2, 2, "imagenes\\flip_flops\\rs_flip_flop.png", "rs_flip_flop", "flip_flop")
     elif puerta_logica_flip_flop_implementacion == "sr_flip_flop":
@@ -515,7 +517,7 @@ def recopilatorio_simulaciones_narrado(puerta_logica_flip_flop_implementacion):
 if __name__ == "__main__":
 #* descomenten para sumular alguna puerta logica, flip flop o implementacion
     print("hola")
-    #recopilatorio_simulaciones("and")
+    recopilatorio_simulaciones_narrado("and")
     recopilatorio_simulaciones("or")
     recopilatorio_simulaciones("not") 
     recopilatorio_simulaciones("xor")
