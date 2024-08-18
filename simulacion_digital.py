@@ -23,7 +23,6 @@
 from pygame import *
 import sys
 from logica_digital import *
-from playsound import playsound
 
 funciones_logicas = {
     "and" : {
