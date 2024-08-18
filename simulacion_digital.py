@@ -230,9 +230,8 @@ display.set_icon(image.load("imagenes\\error_418.png"))
 MAIN_FONT = font.SysFont("cambria", 35)
 
 # funcion que  crea las simulaciones
-def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen , tipo_puerta, puerta_logica_flip_flop_implementacion = "puerta_logica",modo_abierto=False):
-    bandera_menu=False
-    bandera_simulacion=True
+def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen , tipo_puerta, puerta_logica_flip_flop_implementacion = "puerta_logica",
+               modo_abierto=False,bandera_simulacion=True,bandera_menu=False):
     estado_anterior = [0, 1]
     escala_grafico = funciones_logicas[tipo_puerta]["escala"]
     print(escala_grafico)
@@ -255,14 +254,14 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
                 clock_rect = armador_boton_rect(tipo_puerta, "clock", 1)
     resultado = [0]*cantidad_botones_output
     while bandera_simulacion==True:
-        while bandera_menu==False:
+        while bandera_menu==True:
             # limpiar la pantalla
             VENTANA.fill(BLANCO)
             iniciar  = menu(VENTANA, ANCHO, ALTO)
             if iniciar:
-                bandera_menu=True
+                bandera_menu=False
             display.update()
-        while bandera_menu==True:
+        while bandera_menu==False:
             # Limita el bucle a 60 fotogramas por segundo
             clock.tick(FPS)
             # limpiar la pantalla
@@ -300,10 +299,14 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
                     else:
                         resultado = estado_anterior
                 if evento.type== MOUSEBUTTONDOWN and mouse.get_pressed(3)[0] and (pos_mouse[0]<=203 and pos_mouse[1]<=77) : #verificar si se pulsó el botón de retroceder
-                    bandera_menu=False
-                if evento.type== MOUSEBUTTONDOWN and mouse.get_pressed(3)[0] and (pos_mouse[0]>=(ANCHO-203) and pos_mouse[1]<=77) : #verificar si se pulsó un botón de navegación
+                    #menu(ventana, ALTO, ANCHO)
+                    print("retroceder")
+                    bandera_menu=True
+                if evento.type== MOUSEBUTTONDOWN and mouse.get_pressed(3)[0] and (pos_mouse[0]>=(ANCHO-203) and pos_mouse[1]<=77) : #verificar si se pulsó el botón de avanzar
                     print("avanzar")
-                    display.update
+                    bandera_menu=False
+                    bandera_simulacion=False
+                    return False,bandera_menu,bandera_simulacion
             for i in range(cantidad_botones_output):
                 if puerta_logica_flip_flop_implementacion == "puerta_logica":
                     boton(VENTANA, botones_output[i], resultado)
@@ -406,7 +409,7 @@ if __name__ == "__main__":
     print("hola")
     recopilatorio_simulaciones("and")
     recopilatorio_simulaciones("or")
-    #recopilatorio_simulaciones("not") 
+    recopilatorio_simulaciones("not") 
     #recopilatorio_simulaciones("xor")
     #recopilatorio_simulaciones("nand")
     #recopilatorio_simulaciones("nor")
