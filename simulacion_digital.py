@@ -302,8 +302,6 @@ def simulacion(cantidad_botones_input,cantidad_botones_output, direccion_imagen 
                     #menu(ventana, ALTO, ANCHO)
                     print("retroceder")
                     bandera_menu=True
-                if evento.type== MOUSEBUTTONDOWN and mouse.get_pressed(3)[0] and (pos_mouse[0]>=(ANCHO-203) and pos_mouse[1]<=77) : #verificar si se pulsó el botón de avanzar
-                    return None
             for i in range(cantidad_botones_output):
                 if puerta_logica_flip_flop_implementacion == "puerta_logica":
                     boton(VENTANA, botones_output[i], resultado)
@@ -399,6 +397,128 @@ def recopilatorio_simulaciones(puerta_logica_flip_flop_implementacion):
         simulacion(4, 3, "imagenes\\implementaciones\\comparador_2_bits.png", "comparador_2_bits", "implementacion")
     elif puerta_logica_flip_flop_implementacion == "contador_4_bits":
         simulacion_contadores(1, 4, "imagenes\\implementaciones\\contador_4_bits.png", "contador_4_bits", "implementacion")
+        
+#recopilación simulaciones narradas
+def simulacion_narrada(cantidad_botones_input,cantidad_botones_output, direccion_imagen ,tipo_puerta, puerta_logica_flip_flop_implementacion,bandera_menu=False,
+               modo_abierto=False,bandera_simulacion=True):
+    estado_anterior = [0, 1]
+    escala_grafico = funciones_logicas[tipo_puerta]["escala"]
+    print(escala_grafico)
+    boton_retroceder_menu=image.load("imagenes/simbolos/flechita_NOT.png") 
+    boton_retroceder_menu=transform.scale(boton_retroceder_menu,(203,77))
+    boton_retroceder_rect_menu= boton_retroceder_menu.get_rect(center = (203/2, 77/2))
+    boton_avanzar=image.load("imagenes/simbolos/flechita_YES.png") 
+    boton_avanzar=transform.scale(boton_avanzar,(203,77))
+    boton_avanzar_rect= boton_avanzar.get_rect(center = (ANCHO-203/2, 77/2))
+    puerta_grafico = image.load(direccion_imagen) # carga la  imagen
+    puerta_grafico = transform.scale(puerta_grafico, (escala_grafico))
+    puerta_grafico_rect = puerta_grafico.get_rect(center = (ANCHO/2, ALTO/2)) # posicion de la imagen
+    botones_input_rect = armador_boton_rect(tipo_puerta, "input", cantidad_botones_input) # botones de input
+    botones_input_valor = [0]*cantidad_botones_input
+    botones_output = armador_boton_rect(tipo_puerta, "output", cantidad_botones_output) # botones de output
+    if puerta_logica_flip_flop_implementacion != "puerta_logica":
+        if tipo_puerta != "rs_flip_flop":
+            if puerta_logica_flip_flop_implementacion != "implementacion":
+                global valor_clock
+                clock_rect = armador_boton_rect(tipo_puerta, "clock", 1)
+    resultado = [0]*cantidad_botones_output
+    while bandera_simulacion==True:
+        while bandera_menu==True:
+            # limpiar la pantalla
+            VENTANA.fill(BLANCO)
+            iniciar  = menu(VENTANA, ANCHO, ALTO)
+            if iniciar:
+                bandera_menu=False
+            display.update()
+        while bandera_menu==False:
+            # Limita el bucle a 60 fotogramas por segundo
+            clock.tick(FPS)
+            # limpiar la pantalla
+            VENTANA.fill(BLANCO)
+            # dibujar la puerta logica
+            VENTANA.blit(puerta_grafico, puerta_grafico_rect)
+            # dibujar el texto de la imagen
+            VENTANA.blit(MAIN_FONT.render(f"{tipo_puerta.replace('_',' ')}", True, "black"), (ALTO/2, 25)) # texto de la imagen
+            #dibujar los botones de navegacion:
+            VENTANA.blit(boton_retroceder_menu,boton_retroceder_rect_menu)
+            if modo_abierto==False:
+                VENTANA.blit(boton_avanzar,boton_avanzar_rect)       
+            # dibujar los botones
+            for i in range(cantidad_botones_input):
+                boton(VENTANA, botones_input_rect[i], botones_input_valor[i])
+            if puerta_logica_flip_flop_implementacion != "puerta_logica" and puerta_logica_flip_flop_implementacion != "implementacion":
+                if tipo_puerta != "rs_flip_flop":    
+                    boton(VENTANA, clock_rect, valor_clock)
+            # eventos
+            pos_mouse = mouse.get_pos()
+            for evento in event.get():
+                if evento.type == QUIT:
+                    sys.exit() 
+                #if evento.type == MOUSEBUTTONDOWN:
+                    print(pos_mouse)
+                if evento.type == MOUSEBUTTONDOWN and mouse.get_pressed(3)[0]:
+                    for i in range(cantidad_botones_input):
+                        if botones_input_rect[i].collidepoint(pos_mouse):
+                            botones_input_valor[i] = puerta_not(botones_input_valor[i])
+                if evento.type == temporizador: # temporizador 
+                    valor_clock = actualizar_reloj(valor_clock) # actualziar el reloj por el valor 1 o 0
+                    if valor_clock == 1 or puerta_logica_flip_flop_implementacion != "flip_flop":
+                        resultado = import_puertas(tipo_puerta, valor_clock , estado_anterior, *botones_input_valor)
+                        estado_anterior = resultado
+                    else:
+                        resultado = estado_anterior
+                if evento.type== MOUSEBUTTONDOWN and mouse.get_pressed(3)[0] and (pos_mouse[0]>=(ANCHO-203) and pos_mouse[1]<=77) : #verificar si se pulsó el botón de avanzar
+                    return None
+            for i in range(cantidad_botones_output):
+                if puerta_logica_flip_flop_implementacion == "puerta_logica":
+                    boton(VENTANA, botones_output[i], resultado)
+                else:
+                    boton(VENTANA, botones_output[i], resultado[i])
+            display.update()
+def recopilatorio_simulaciones_narrado(puerta_logica_flip_flop_implementacion):
+    if puerta_logica_flip_flop_implementacion == "and":
+        simulacion_narrada(2, 1, "imagenes\\puertas_logicas\\puerta_and.png", "and","puerta_logica")
+        #inserte narración
+    elif puerta_logica_flip_flop_implementacion == "or":
+        simulacion_narrada(2, 1, "imagenes\\puertas_logicas\\puerta_or.png", "or", "puerta_logica")
+        #inserte narración
+    elif puerta_logica_flip_flop_implementacion == "not":
+        simulacion_narrada(1, 1, "imagenes\\puertas_logicas\\puerta_not.png", "not", "puerta_logica")
+        #inserte narración
+    elif puerta_logica_flip_flop_implementacion == "xor":
+        simulacion_narrada(2, 1, "imagenes\\puertas_logicas\\puerta_xor.png", "xor", "puerta_logica")
+        #inserte narración
+    elif puerta_logica_flip_flop_implementacion == "nand":
+        simulacion_narrada(2, 1, "imagenes\\puertas_logicas\\puerta_nand.png", "nand", "puerta_logica")
+    elif puerta_logica_flip_flop_implementacion == "nor":
+        simulacion_narrada(2, 1, "imagenes\\puertas_logicas\\puerta_nor.png", "nor", "puerta_logica")
+    elif puerta_logica_flip_flop_implementacion == "xnor":
+        simulacion_narrada(2, 1, "imagenes\\puertas_logicas\\puerta_xnor.png", "xnor", "puerta_logica")
+    elif puerta_logica_flip_flop_implementacion == "rs_flip_flop":
+        simulacion_narrada(2, 2, "imagenes\\flip_flops\\rs_flip_flop.png", "rs_flip_flop", "flip_flop")
+    elif puerta_logica_flip_flop_implementacion == "sr_flip_flop":
+        simulacion_narrada(2, 2, "imagenes\\flip_flops\\sr_flip_flop.png", "sr_flip_flop", "flip_flop")
+    elif puerta_logica_flip_flop_implementacion == "jk_flip_flop":
+        simulacion_narrada(2, 2, "imagenes\\flip_flops\\jk_flip_flop.png", "jk_flip_flop", "flip_flop")
+    elif puerta_logica_flip_flop_implementacion == "d_flip_flop":
+        simulacion_narrada(1, 2, "imagenes\\flip_flops\\d_flip_flop.png", "d_flip_flop", "flip_flop")
+    elif puerta_logica_flip_flop_implementacion == "t_flip_flop":
+        simulacion_narrada(1, 2, "imagenes\\flip_flops\\t_flip_flop.png", "t_flip_flop", "flip_flop")
+    elif puerta_logica_flip_flop_implementacion == "semi_sumador":
+        simulacion_narrada(2, 2, "imagenes\\implementaciones\\semi_sumador.png", "semi_sumador", "implementacion")
+    elif puerta_logica_flip_flop_implementacion == "semi_substractor":
+        simulacion_narrada(2, 2, "imagenes\\implementaciones\\semi_substractor.png", "semi_substractor", "implementacion")
+    elif puerta_logica_flip_flop_implementacion == "sumador_total":
+        simulacion_narrada(3, 2, "imagenes\\implementaciones\\sumador_total.png", "sumador_total", "implementacion")
+    elif puerta_logica_flip_flop_implementacion == "restador_total":
+        simulacion_narrada(3, 2, "imagenes\\implementaciones\\restador_total.png", "restador_total", "implementacion")
+    elif puerta_logica_flip_flop_implementacion == "multiplicador_4bits":
+        simulacion_narrada(4, 4, "imagenes\\implementaciones\\multiplicador_4bits.png", "multiplicador_4bits", "implementacion")
+    elif puerta_logica_flip_flop_implementacion == "comparador_2_bits":
+        simulacion_narrada(4, 3, "imagenes\\implementaciones\\comparador_2_bits.png", "comparador_2_bits", "implementacion")
+    elif puerta_logica_flip_flop_implementacion == "contador_4_bits":
+        simulacion_contadores(1, 4, "imagenes\\implementaciones\\contador_4_bits.png", "contador_4_bits", "implementacion")
+
 
 
 if __name__ == "__main__":
