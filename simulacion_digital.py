@@ -228,10 +228,10 @@ VENTANA = display.set_mode((ANCHO, ALTO))
 display.set_caption('"simulacion digital"')
 display.set_icon(image.load("imagenes\\error_418.png"))
 MAIN_FONT = font.SysFont("cambria", 35)
-
 # funcion que  crea las simulaciones
-def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen , tipo_puerta, puerta_logica_flip_flop_implementacion = "puerta_logica",
-               modo_abierto=False,bandera_simulacion=True,bandera_menu=False):
+bandera_menu=False
+def simulacion(cantidad_botones_input,cantidad_botones_output, direccion_imagen ,tipo_puerta, puerta_logica_flip_flop_implementacion,bandera_menu=False,
+               modo_abierto=False,bandera_simulacion=True):
     estado_anterior = [0, 1]
     escala_grafico = funciones_logicas[tipo_puerta]["escala"]
     print(escala_grafico)
@@ -303,10 +303,7 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
                     print("retroceder")
                     bandera_menu=True
                 if evento.type== MOUSEBUTTONDOWN and mouse.get_pressed(3)[0] and (pos_mouse[0]>=(ANCHO-203) and pos_mouse[1]<=77) : #verificar si se pulsó el botón de avanzar
-                    print("avanzar")
-                    bandera_menu=False
-                    bandera_simulacion=False
-                    return False,bandera_menu,bandera_simulacion
+                    return None
             for i in range(cantidad_botones_output):
                 if puerta_logica_flip_flop_implementacion == "puerta_logica":
                     boton(VENTANA, botones_output[i], resultado)
@@ -407,10 +404,10 @@ def recopilatorio_simulaciones(puerta_logica_flip_flop_implementacion):
 if __name__ == "__main__":
 #* descomenten para sumular alguna puerta logica, flip flop o implementacion
     print("hola")
-    recopilatorio_simulaciones("and")
+    #recopilatorio_simulaciones("and")
     recopilatorio_simulaciones("or")
     recopilatorio_simulaciones("not") 
-    #recopilatorio_simulaciones("xor")
+    recopilatorio_simulaciones("xor")
     #recopilatorio_simulaciones("nand")
     #recopilatorio_simulaciones("nor")
     #recopilatorio_simulaciones("xnor")
