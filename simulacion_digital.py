@@ -255,13 +255,6 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
     resultado = [0]*cantidad_botones_output
     bandera_salida = True
     bandera = True
-    # while True:
-    #     # limpiar la pantalla
-    #     VENTANA.fill(BLANCO)
-    #     iniciar  = menu(VENTANA, ANCHO, ALTO)
-    #     if iniciar:
-    #         break
-    #     display.update()
     while bandera:
         # Limita el bucle a 60 fotogramas por segundo
         clock.tick(FPS)
