@@ -459,17 +459,6 @@ def menu_simulacion(VENTANA, ALTO, ANCHO):
             bandera_1 = recopilatorio_simulaciones("rs_flip_flop")
             if bandera_1 == True:
                 bandera_7 = False
-
-        
-
-
-            
-        if bandera_3 == False:
-            bandera_4 = recopilatorio_simulaciones("not")
-            
-        if bandera_4 == False:
-            bandera_5 = recopilatorio_simulaciones("xor")
-            
 if __name__ == "__main__":
 #* descomenten para sumular alguna puerta logica, flip flop o implementacion
     print("hola")
