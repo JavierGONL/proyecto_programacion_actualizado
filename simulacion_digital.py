@@ -412,45 +412,45 @@ def menu_simulacion(VENTANA, ALTO, ANCHO):
                 inicio = False
                 bandera_1 = False
             display.update()
-        if bandera_1 == False :
+        if not bandera_1:
             inicio = False
             bandera_2 = recopilatorio_simulaciones("and")
-            if bandera_2 == True:
+            if bandera_2:
                 inicio = True
-        if bandera_2 == False:
+        if not bandera_2:
             bandera_1 = True
             bandera_3 = recopilatorio_simulaciones("or")
-            if bandera_3 == True:
+            if bandera_3:
                 bandera_1 = False
-        if bandera_3 == False:
+        if not bandera_3:
             bandera_2 = True
             bandera_4 = recopilatorio_simulaciones("not")
-            if bandera_4 == True:
+            if bandera_4:
                 bandera_2 = False
-        if bandera_4 == False:
+        if not bandera_4:
             bandera_3 = True
             bandera_5 = recopilatorio_simulaciones("xor")
-            if bandera_5 == True:
+            if bandera_5:
                 bandera_3 = False
-        if bandera_5 == False:
+        if not bandera_5:
             bandera_4 = True
             bandera_6 = recopilatorio_simulaciones("nand")
-            if bandera_6 == True:
+            if bandera_6:
                 bandera_4 = False
-        if bandera_6 == False:
+        if not bandera_6:
             bandera_5 = True
             bandera_7 = recopilatorio_simulaciones("nor")
-            if bandera_7 == True:
+            if bandera_7:
                 bandera_5 = False
         if bandera_7 == False:
             bandera_6 = True
             bandera_8 = recopilatorio_simulaciones("xnor")
             if bandera_8 == True:
                 bandera_6 = False
-        if bandera_8 == False:
+        if not bandera_8:
             bandera_7 = True
             bandera_1 = recopilatorio_simulaciones("rs_flip_flop")
-            if bandera_1 == True:
+            if bandera_1:
                 bandera_7 = False
 if __name__ == "__main__":
 #* descomenten para sumular alguna puerta logica, flip flop o implementacion
