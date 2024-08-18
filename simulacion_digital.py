@@ -231,16 +231,13 @@ MAIN_FONT = font.SysFont("cambria", 35)
 # funcion que  crea las simulaciones
 bandera_menu=False
 def simulacion(cantidad_botones_input,cantidad_botones_output, direccion_imagen ,tipo_puerta, puerta_logica_flip_flop_implementacion,bandera_menu=False,
-               modo_abierto=False,bandera_simulacion=True):
+                bandera_simulacion=True):
     estado_anterior = [0, 1]
     escala_grafico = funciones_logicas[tipo_puerta]["escala"]
     print(escala_grafico)
     boton_retroceder_menu=image.load("imagenes/simbolos/flechita_NOT.png") 
     boton_retroceder_menu=transform.scale(boton_retroceder_menu,(203,77))
     boton_retroceder_rect_menu= boton_retroceder_menu.get_rect(center = (203/2, 77/2))
-    boton_avanzar=image.load("imagenes/simbolos/flechita_YES.png") 
-    boton_avanzar=transform.scale(boton_avanzar,(203,77))
-    boton_avanzar_rect= boton_avanzar.get_rect(center = (ANCHO-203/2, 77/2))
     puerta_grafico = image.load(direccion_imagen) # carga la  imagen
     puerta_grafico = transform.scale(puerta_grafico, (escala_grafico))
     puerta_grafico_rect = puerta_grafico.get_rect(center = (ANCHO/2, ALTO/2)) # posicion de la imagen
@@ -271,9 +268,7 @@ def simulacion(cantidad_botones_input,cantidad_botones_output, direccion_imagen 
             # dibujar el texto de la imagen
             VENTANA.blit(MAIN_FONT.render(f"{tipo_puerta.replace('_',' ')}", True, "black"), (ALTO/2, 25)) # texto de la imagen
             #dibujar los botones de navegacion:
-            VENTANA.blit(boton_retroceder_menu,boton_retroceder_rect_menu)
-            if modo_abierto==False:
-                VENTANA.blit(boton_avanzar,boton_avanzar_rect)       
+            VENTANA.blit(boton_retroceder_menu,boton_retroceder_rect_menu)   
             # dibujar los botones
             for i in range(cantidad_botones_input):
                 boton(VENTANA, botones_input_rect[i], botones_input_valor[i])
@@ -404,9 +399,6 @@ def simulacion_narrada(cantidad_botones_input,cantidad_botones_output, direccion
     estado_anterior = [0, 1]
     escala_grafico = funciones_logicas[tipo_puerta]["escala"]
     print(escala_grafico)
-    boton_retroceder_menu=image.load("imagenes/simbolos/flechita_NOT.png") 
-    boton_retroceder_menu=transform.scale(boton_retroceder_menu,(203,77))
-    boton_retroceder_rect_menu= boton_retroceder_menu.get_rect(center = (203/2, 77/2))
     boton_avanzar=image.load("imagenes/simbolos/flechita_YES.png") 
     boton_avanzar=transform.scale(boton_avanzar,(203,77))
     boton_avanzar_rect= boton_avanzar.get_rect(center = (ANCHO-203/2, 77/2))
@@ -440,7 +432,6 @@ def simulacion_narrada(cantidad_botones_input,cantidad_botones_output, direccion
             # dibujar el texto de la imagen
             VENTANA.blit(MAIN_FONT.render(f"{tipo_puerta.replace('_',' ')}", True, "black"), (ALTO/2, 25)) # texto de la imagen
             #dibujar los botones de navegacion:
-            VENTANA.blit(boton_retroceder_menu,boton_retroceder_rect_menu)
             if modo_abierto==False:
                 VENTANA.blit(boton_avanzar,boton_avanzar_rect)       
             # dibujar los botones
