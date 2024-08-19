@@ -453,7 +453,7 @@ def menu_simulacion(VENTANA, ALTO, ANCHO):
             if bandera_1:
                 bandera_7 = False
 if __name__ == "__main__":
-#* descomenten para sumular alguna puerta logica, flip flop o implementacion
+#* descomenten para simular alguna puerta logica, flip flop o implementacion
     print("hola")
     #recopilatorio_simulaciones("and")
     #recopilatorio_simulaciones("or")
