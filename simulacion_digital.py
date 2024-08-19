@@ -347,11 +347,11 @@ def simulacion_contadores(cantidad_botones_input, cantidad_botones_output, direc
             if evento.type == temporizador: # temporizador 
                 valor_clock = actualizar_reloj() # actualziar el reloj por el valor 1 o 0
                 if valor_clock == 1: 
-                        estado_anterior[0] = import_puertas(tipo_puerta, valor_clock, estado_anterior, *botones_input_valor)
+                        estado_anterior[0] = import_puertas(tipo_puerta, valor_clock, estado_anterior[0], *botones_input_valor)
                         for i in range(3):
-                            estado_anterior[i + 1] = estado_anterior[i + 1]
+                            estado_anterior[i + 1] = import_puertas(tipo_puerta, estado_anterior[i], estado_anterior[i + 1], *botones_input_valor)
             for i in range(cantidad_botones_output):
-                boton(VENTANA, botones_output[0], estado_anterior[0])          
+                boton(VENTANA, botones_output[0], estado_anterior[0])
         display.update()
 
 # funcion que recopila las simulaciones
@@ -453,6 +453,7 @@ def menu_simulacion(VENTANA, ALTO, ANCHO):
             bandera_1 = recopilatorio_simulaciones("rs_flip_flop")
             if bandera_1:
                 bandera_7 = False
+
 if __name__ == "__main__":
 #* descomenten para simular alguna puerta logica, flip flop o implementacion
     print("hola")
