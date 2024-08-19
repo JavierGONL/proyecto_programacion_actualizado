@@ -9,17 +9,20 @@
 
 Este proyecto fue realizado para  
 
-# diagramas y funcionamientos de las funciones
+## diagramas y funcionamientos de las funciones
 
-- funcionamiento de las puertas logicas en el proyecto
+funcionamiento de las puertas logicas en el proyecto
 
-## puertas logicas
+### puertas logicas
 
-### puerta YES
+Las puertas lógicas son componentes fundamentales en la electrónica digital. Se utilizan para realizar operaciones lógicas básicas en circuitos digitales y están basadas en el álgebra booleana.
+
+#### puerta YES
 
 
 <details><summary>explicacion</summary>
-  - tabla de verdad:
+  
+  ##### tabla de verdad:
   <table>
      <tr>
     <td> entrada </td> <td> salida </td> 
@@ -32,7 +35,7 @@ Este proyecto fue realizado para
   </table>
 <br>
 
-#### Explicación: 
+##### Explicación: 
 La puerta lógica YES considera una única entrada y una única salida, la salida tiene siempre el mismo valor que la entrada. Se puede recrear con un transistor.
 
 #### Esta puerta lógica se puede programar de la siguiente manera:
@@ -82,7 +85,8 @@ C-->|no|E(salida=verdadero)
 
 ### puerta AND
 <details><summary>explicacion</summary>
-  - tabla de verdad:
+  
+  #### tabla de verdad:
   <table>
      <tr>
     <td> a </td> <td> b </td> <td> salida </td>
@@ -101,6 +105,7 @@ C-->|no|E(salida=verdadero)
   </tr>
 </table>
 <br>
+
 #### Explicacion: 
 La puerta AND considera 2 entradas y una única salida en función de las entradas, encendiendose unicamente si ambas entradas están encendidas; en los otros casos la puerta se mantiene apagada. Se puede recrear con 2 transistores conectados en serie.
 
@@ -120,7 +125,7 @@ C-->|no|E(salida=falso)
 ### puerta OR
 
 <details><summary>explicacion</summary>
-  - tabla de verdad:
+  #### tabla de verdad:
   <table>
      <tr>
     <td> a </td> <td> b </td> <td> salida </td>
@@ -139,6 +144,7 @@ C-->|no|E(salida=falso)
   </tr>
 </table>
 <br>
+  
 #### Explicación: 
 La puerta OR considera 2 entradas y una única salida en función de las entradas, tal que si alguna de las dos entradas está encendida, la salida lógica también está encendida; el único caso en dónde la salida se encuentra apagada es si ambas entradas se encuentran apagadas. Se puede recrear con 2 transistores conectados en paralelo.
 
@@ -159,7 +165,8 @@ C-->|no|E(salida=falso)
 ### puerta XOR
 
 <details><summary>explicacion</summary>
-  - tabla de verdad:
+  
+  #### tabla de verdad:
   <table>
      <tr>
     <td> a </td> <td> b </td> <td> salida </td>
@@ -178,10 +185,12 @@ C-->|no|E(salida=falso)
   </tr>
 </table>
 <br>
+
 #### Explicación: 
+
 La puerta XOR considera 2 entradas y una única salida en función de las entradas, tal que si alguna de las dos entradas está encendida, la salida lógica también está encendida; su comportamiento es muy parecido al de la puerta OR, solo que a diferencia de esta, se apaga si ambas entradas se encuentran encendidas. Se puede recrear haciendo un cirucito híbrido entre la puerta AND y la OR(conectando ambos transistores tanto en serie como en paralelo), el circuito OR mantiene sus salidas originales, mientras que el circuito AND tiene la salida conectada a tierra.
 
-Esta puerta se puede programar de la siguiente forma:
+#### Esta puerta se puede programar de la siguiente forma:
 
 ```mermaid
 flowchart TD
@@ -202,16 +211,15 @@ Los flip flops, biestables, o latch, son un circuito multivibrador(un tipo de ci
 
 *pongamosle que sacado de wikipedia, de momento porque el profe no dijo que tocaba que utilizar fuentes*
 
-### rs flip flop (asincrono)
-
-<details><summary>explicacion</summary>
-  - tabla de verdad:
+<details><summary>rs flip flop (asincrono)</summary>
+  
+  #### tabla de verdad:
   <table>
    <tr>
     <td> r </td> <td> s </td> <td> q </td> <td> q` </td>
   </tr>
   <tr>
-  <td> 0 </td> <td> 0 </td> <td> sin cambios </td>
+  <td> 0 </td> <td> 0 </td> <td colspan ="2"> sin cambios </td>
   </tr>
   <tr>
     <td> 1 </td> <td> 0 </td> <td> 1 </td><td> 0 </td>
@@ -220,7 +228,7 @@ Los flip flops, biestables, o latch, son un circuito multivibrador(un tipo de ci
     <td> 0 </td> <td> 1 </td> <td> 0 </td><td> 1 </td>
   </tr>
      <tr>
-    <td> 1 </td> <td> 1 </td> <td> estado invalido </td>
+    <td> 1 </td> <td> 1 </td> <td colspan ="2"> estado invalido </td>
   </tr>
 </table>
 <br>
@@ -242,29 +250,33 @@ flowchart TD
 </details>
 
 
-### rs flip flop (sincrono)
-
-<details><summary>explicacion</summary>
-  - tabla de verdad:
+<details><summary>rs flip flop (sincrono)</summary>
+  
+  ####  tabla de verdad:
   <table>
    <tr>
     <td> r </td> <td> s </td> <td> q </td> <td> q` </td>
   </tr>
   <tr>
-  <td> 0 </td> <td> 0 </td> <td> sin cambios </td> 
+  <td> 0 </td> <td> 0 </td> <td colspan ="2"> sin cambios </td> 
   </tr>
   <tr>
-    <td> 1 </td> <td> 0 </td> <td> 1 </td><td> 0 </td>
+    <td> 0 </td> <td> 1 </td> <td> 1 </td><td> 0 </td>
   </tr>
      <tr>
-    <td> 0 </td> <td> 1 </td> <td> 0 </td><td> 1 </td>
+    <td> 1 </td> <td> 0 </td> <td> 0 </td><td> 1 </td>
   </tr>
      <tr>
-    <td> 1 </td> <td> 1 </td> <td> estado invalido </td>
+    <td> 1 </td> <td> 1 </td> <td colspan ="2"> estado invalido </td>
   </tr>
 </table>
 <br>
-- Explicación: 
+  
+#### Explicación: 
+
+Los flip flops SR síncronos, a diferencia del asincrono espera el clock sea 1 para "activar" las entradas en el caso del clock sea 0 simplemente no pasa nada, estos flip flops tienen los mismos 4 estado que su version asincrona.
+
+#### Esta puerta se puede programar de la siguiente forma:
 
   ```mermaid
 flowchart TD
@@ -278,10 +290,11 @@ flowchart TD
 ```
 </details>
 
-### d flip flop 
 
-<details><summary>explicacion</summary>
-  - tabla de verdad:
+<details><summary> d flip flop </summary>
+  
+  #### tabla de verdad:
+
   <table>
    <tr>
     <td> d </td> <td> q </td> <td> q` </td>
@@ -294,49 +307,68 @@ flowchart TD
   </tr>
 </table>
 <br>
-- Explicación: 
+
+  
+#### Explicación:
+
+simplemente es un rs flip flop con una sola entrada (d), en este flip flop de la entrada d va directo al set y para el reset se niega la entrada haciendo que este flip flop solo tenga dos estados, si d = 1, set = 1 y reset = 0, sino d = 0, set = 0 y reset = 1.
+
+#### Esta puerta se puede programar de la siguiente forma:
+
+```mermaid
+flowchart TD
+    A(d flip flop) --> B[entrada d] --> C[set = d, reset = not d]
+    --> D[ se pasan los datos a la funcion rs flip flop sincrono]
+```
 </details>
 
-### jk flip flop
 
-<details><summary>explicacion</summary>
-  - tabla de verdad:
+<details><summary>jk flip flop</summary>
+  
+  #### tabla de verdad:
+
   <table>
    <tr>
     <td> j </td> <td> k </td>  <td> q </td> <td> q` </td>
   </tr>
   <tr>
-  <td> 0 </td> <td> 0 </td> <td> sin cambios </td>
+  <td> 0 </td> <td> 0 </td> <td colspan ="2"> sin cambios </td>
   </tr>
   <tr>
-    <td> 1 </td> <td> 0 </td> <td> 1 </td><td> 0 </td>
-  </tr>
-     <tr>
     <td> 0 </td> <td> 1 </td> <td> 0 </td><td> 1 </td>
   </tr>
      <tr>
-    <td> 1 </td> <td> 1 </td> <td> toggle </td>
+    <td> 1 </td> <td> 0 </td> <td> 1 </td><td> 0 </td>
+  </tr>
+     <tr>
+    <td> 1 </td> <td> 1 </td> <td colspan ="2"> toggle </td>
   </tr>
 </table>
 <br>
-- Explicación: 
+
+#### Explicación: 
+
+el jk flip flop,
+
 </details>
 
-### t flip flop
 
-<details><summary>explicacion</summary>
-  - tabla de verdad:
-  <table>
-  <tr>
-  <td> t </td> <td> q </td> <td> q` </td>
+<details><summary>t flip flop</summary>
+  
+  #### tabla de verdad:
+<table>
+   <tr>
+    <td> t </td>   <td> q </td> <td> q` </td>
   </tr>
   <tr>
-  <td> 0 </td>  <td> sin cambios </td>
+  <td> 0 </td>  <td colspan ="2"> sin cambios </td>
   </tr>
-  <tr>
-  <td> 1 </td> <td> toggle  </td>
-  <tr>
+     <tr>
+    <td> 1 </td>  <td colspan ="2"> toggle </td>
+  </tr>
 </table>
 <br>
-- Explicación: 
+
+#### Explicación: 
+
 </details>
