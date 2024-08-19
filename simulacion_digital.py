@@ -222,7 +222,6 @@ ANCHO = 800
 FPS = 30
 BLANCO = (255, 255, 255)
 NEGRO = (0, 0, 0)
-
 # configuracion pantalla
 VENTANA = display.set_mode((ANCHO, ALTO))
 display.set_caption('"simulacion digital"')
@@ -230,7 +229,7 @@ display.set_icon(image.load("imagenes\\error_418.png"))
 MAIN_FONT = font.SysFont("cambria", 35)
 
 # funcion que  crea las simulaciones
-def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen , tipo_puerta, puerta_logica_flip_flop_implementacion = "puerta_logica",modo_abierto=False):
+def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen , tipo_puerta, puerta_logica_flip_flop_implementacion,direccion_narracion,modo_abierto=False):
     estado_anterior = [0, 1]
     escala_grafico = funciones_logicas[tipo_puerta]["escala"]
     # menu
@@ -253,6 +252,8 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
                 global valor_clock
                 clock_rect = armador_boton_rect(tipo_puerta, "clock", 1)
     resultado = [0]*cantidad_botones_output
+    mixer.music.load(direccion_narracion)
+    mixer.music.play(1)
     bandera_salida = True
     bandera = True
     while bandera:
@@ -356,43 +357,43 @@ def simulacion_contadores(cantidad_botones_input, cantidad_botones_output, direc
 # funcion que recopila las simulaciones
 def recopilatorio_simulaciones(puerta_logica_flip_flop_implementacion):
     if puerta_logica_flip_flop_implementacion == "and":
-        valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_and.png", "and","puerta_logica")
+        valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_and.png", "and","puerta_logica","narraciones/AND.mp3")
     elif puerta_logica_flip_flop_implementacion == "or":
-        valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_or.png", "or", "puerta_logica")
+        valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_or.png", "or", "puerta_logica","narraciones/OR.mp3")
     elif puerta_logica_flip_flop_implementacion == "not":
-        valor = simulacion(1, 1, "imagenes\\puertas_logicas\\puerta_not.png", "not", "puerta_logica")
+        valor = simulacion(1, 1, "imagenes\\puertas_logicas\\puerta_not.png", "not", "puerta_logica","narraciones/NOT.mp3") #cambiar en todas menos esta
     elif puerta_logica_flip_flop_implementacion == "xor":
-        valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_xor.png", "xor", "puerta_logica")
+        valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_xor.png", "xor", "puerta_logica","narraciones/XOR.mp3")
     elif puerta_logica_flip_flop_implementacion == "nand":
-        valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_nand.png", "nand", "puerta_logica")
+        valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_nand.png", "nand", "puerta_logica","narraciones/NOT.mp3")
     elif puerta_logica_flip_flop_implementacion == "nor":
-        valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_nor.png", "nor", "puerta_logica")
+        valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_nor.png", "nor", "puerta_logica","narraciones/NOT.mp3")
     elif puerta_logica_flip_flop_implementacion == "xnor":
-        valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_xnor.png", "xnor", "puerta_logica")
+        valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_xnor.png", "xnor", "puerta_logica","narraciones/NOT.mp3")
     elif puerta_logica_flip_flop_implementacion == "rs_flip_flop":
-        valor = simulacion(2, 2, "imagenes\\flip_flops\\rs_flip_flop.png", "rs_flip_flop", "flip_flop")
+        valor = simulacion(2, 2, "imagenes\\flip_flops\\rs_flip_flop.png", "rs_flip_flop", "flip_flop","narraciones/RS_flip_flop.mp3")
     elif puerta_logica_flip_flop_implementacion == "sr_flip_flop":
-        valor = simulacion(2, 2, "imagenes\\flip_flops\\sr_flip_flop.png", "sr_flip_flop", "flip_flop")
+        valor = simulacion(2, 2, "imagenes\\flip_flops\\sr_flip_flop.png", "sr_flip_flop", "flip_flop","narraciones/NOT.mp3")
     elif puerta_logica_flip_flop_implementacion == "jk_flip_flop":
-        valor = simulacion(2, 2, "imagenes\\flip_flops\\jk_flip_flop.png", "jk_flip_flop", "flip_flop")
+        valor = simulacion(2, 2, "imagenes\\flip_flops\\jk_flip_flop.png", "jk_flip_flop", "flip_flop","narraciones/NOT.mp3")
     elif puerta_logica_flip_flop_implementacion == "d_flip_flop":
-        valor = simulacion(1, 2, "imagenes\\flip_flops\\d_flip_flop.png", "d_flip_flop", "flip_flop")
+        valor = simulacion(1, 2, "imagenes\\flip_flops\\d_flip_flop.png", "d_flip_flop", "flip_flop","narraciones/NOT.mp3")
     elif puerta_logica_flip_flop_implementacion == "t_flip_flop":
-        valor = simulacion(1, 2, "imagenes\\flip_flops\\t_flip_flop.png", "t_flip_flop", "flip_flop")
+        valor = simulacion(1, 2, "imagenes\\flip_flops\\t_flip_flop.png", "t_flip_flop", "flip_flop","narraciones/NOT.mp3")
     elif puerta_logica_flip_flop_implementacion == "semi_sumador":
-        valor = simulacion(2, 2, "imagenes\\implementaciones\\semi_sumador.png", "semi_sumador", "implementacion")
+        valor = simulacion(2, 2, "imagenes\\implementaciones\\semi_sumador.png", "semi_sumador", "implementacion","narraciones/NOT.mp3")
     elif puerta_logica_flip_flop_implementacion == "semi_substractor":
-        valor = simulacion(2, 2, "imagenes\\implementaciones\\semi_substractor.png", "semi_substractor", "implementacion")
+        valor = simulacion(2, 2, "imagenes\\implementaciones\\semi_substractor.png", "semi_substractor", "implementacion","narraciones/NOT.mp3")
     elif puerta_logica_flip_flop_implementacion == "sumador_total":
-        valor = simulacion(3, 2, "imagenes\\implementaciones\\sumador_total.png", "sumador_total", "implementacion")
+        valor = simulacion(3, 2, "imagenes\\implementaciones\\sumador_total.png", "sumador_total", "implementacion","narraciones/NOT.mp3")
     elif puerta_logica_flip_flop_implementacion == "restador_total":
-        valor = simulacion(3, 2, "imagenes\\implementaciones\\restador_total.png", "restador_total", "implementacion")
+        valor = simulacion(3, 2, "imagenes\\implementaciones\\restador_total.png", "restador_total", "implementacion","narraciones/NOT.mp3")
     elif puerta_logica_flip_flop_implementacion == "multiplicador_4bits":
-        valor = simulacion(4, 4, "imagenes\\implementaciones\\multiplicador_4bits.png", "multiplicador_4bits", "implementacion")
+        valor = simulacion(4, 4, "imagenes\\implementaciones\\multiplicador_4bits.png", "multiplicador_4bits", "implementacion","narraciones/NOT.mp3")
     elif puerta_logica_flip_flop_implementacion == "comparador_2_bits":
-        valor = simulacion(4, 3, "imagenes\\implementaciones\\comparador_2_bits.png", "comparador_2_bits", "implementacion")
+        valor = simulacion(4, 3, "imagenes\\implementaciones\\comparador_2_bits.png", "comparador_2_bits", "implementacion","narraciones/NOT.mp3")
     elif puerta_logica_flip_flop_implementacion == "contador_4_bits":
-        valor = simulacion_contadores(1, 4, "imagenes\\implementaciones\\contador_4_bits.png", "contador_4_bits", "implementacion")
+        valor = simulacion_contadores(1, 4, "imagenes\\implementaciones\\contador_4_bits.png", "contador_4_bits", "implementacion","narraciones/NOT.mp3")
     return valor
 def menu_simulacion(VENTANA, ALTO, ANCHO):
     inicio = True
