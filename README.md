@@ -62,7 +62,7 @@ C-->|no|E(salida=falso)
     <td> 1 </td> <td> 0 </td> 
 </table>
 <br>
-- Explicación: La puerta lógica NOT considera una única entrada y una única salida, la salida tiene siempre el valor inverso al de la entrada. Esta puerta se utiliza para crear puertas como la NAND o la NOR entre otras, al colocarse en la salida de la puerta que se desea invertir. Se puede recrear con un transistor cuya salida conecta a tierra y un nodo previo al colector por donde sale la información.
+- Explicación: La puerta lógica NOT considera una única entrada y una única salida, la salida tiene siempre el valor inverso al de la entrada. Esta puerta se utiliza para crear puertas como la NAND o la NOR entre otras, al colocarse en la salida de la puerta que se desea invertir. Se puede recrear con un transistor cuya salida conecta a tierra y un nodo previo al colector, donde se encuentra la salida lógica.
 
 Esta puerta lógica se puede programar de la siguiente manera:
 
@@ -135,7 +135,7 @@ C-->|no|E(salida=falso)
   </tr>
 </table>
 <br>
-- Explicación: La puerta OR considera 2 entradas y una única salida en función de las entradas, tal que si alguna de las dos entradas está encendida, la salida lógica también está encendida; el único caso en dónde la salida se encuentra apagada es si ambas entradas se encunetran apagadas. Se puede recrear con 2 transistores conectados en paralelo.
+- Explicación: La puerta OR considera 2 entradas y una única salida en función de las entradas, tal que si alguna de las dos entradas está encendida, la salida lógica también está encendida; el único caso en dónde la salida se encuentra apagada es si ambas entradas se encuentran apagadas. Se puede recrear con 2 transistores conectados en paralelo.
 
 Esta puerta se puede programar de la siguiente forma:
 
@@ -218,7 +218,7 @@ Los flip flops, biestables, o latch, son un circuito multivibrador(un tipo de ci
   </tr>
 </table>
 <br>
-- Explicación: Los flip flops RS asíncronos (sin reloj), son aquellos que pueden tener 4 estados, 1¡uno de set(o ajuste), uno de memoria(correspondiente al antrior), uno de reset(reajuste o borrado), el cual invierte las salidas del estado de set, junto con su correspondiente estado de memoria. Y un estado indeterminado( en el cuál no se cumple la condición de inversión entre Q y Q', y puede variar según los componentes empleados para construir el flip flop).
+- Explicación: Los flip flops RS asíncronos (sin reloj), son aquellos que pueden tener 4 estados, uno de set(o ajuste), uno de memoria(correspondiente al anterior), uno de reset(reajuste o borrado), el cual invierte las salidas del estado de set, junto con su correspondiente estado de memoria. Y un estado indeterminado( en el cuál no se cumple la condición de inversión entre Q y Q', y puede variar según los componentes empleados para construir el flip flop).
 </details>
 
 ### rs flip flop (sincrono)
