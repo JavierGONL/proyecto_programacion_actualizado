@@ -32,9 +32,10 @@ Este proyecto fue realizado para
   </table>
 <br>
 
-- Explicación: La puerta lógica YES considera una única entrada y una única salida, la salida tiene siempre el mismo valor que la entrada. Se puede recrear con un transistor.
+#### Explicación: 
+La puerta lógica YES considera una única entrada y una única salida, la salida tiene siempre el mismo valor que la entrada. Se puede recrear con un transistor.
 
-Esta puerta lógica se puede programar de la siguiente manera:
+#### Esta puerta lógica se puede programar de la siguiente manera:
 
 ```mermaid
 flowchart TD
@@ -62,9 +63,11 @@ C-->|no|E(salida=falso)
     <td> 1 </td> <td> 0 </td> 
 </table>
 <br>
-- Explicación: La puerta lógica NOT considera una única entrada y una única salida, la salida tiene siempre el valor inverso al de la entrada. Esta puerta se utiliza para crear puertas como la NAND o la NOR entre otras, al colocarse en la salida de la puerta que se desea invertir. Se puede recrear con un transistor cuya salida conecta a tierra y un nodo previo al colector, donde se encuentra la salida lógica.
 
-Esta puerta lógica se puede programar de la siguiente manera:
+#### Explicación: 
+La puerta lógica NOT considera una única entrada y una única salida, la salida tiene siempre el valor inverso al de la entrada. Esta puerta se utiliza para crear puertas como la NAND o la NOR entre otras, al colocarse en la salida de la puerta que se desea invertir. Se puede recrear con un transistor cuya salida conecta a tierra y un nodo previo al colector, donde se encuentra la salida lógica.
+
+#### Esta puerta lógica se puede programar de la siguiente manera:
 
 ```mermaid
 flowchart TD
@@ -98,9 +101,10 @@ C-->|no|E(salida=verdadero)
   </tr>
 </table>
 <br>
-  - Explicacion: La puerta AND considera 2 entradas y una única salida en función de las entradas, encendiendose unicamente si ambas entradas están encendidas; en los otros casos la puerta se mantiene apagada. Se puede recrear con 2 transistores conectados en serie.
+#### Explicacion: 
+La puerta AND considera 2 entradas y una única salida en función de las entradas, encendiendose unicamente si ambas entradas están encendidas; en los otros casos la puerta se mantiene apagada. Se puede recrear con 2 transistores conectados en serie.
 
-Esta puerta lógica se puede conectar de la siguiente forma:
+#### Esta puerta lógica se puede conectar de la siguiente forma:
 
 ```mermaid
 flowchart TD
@@ -135,9 +139,10 @@ C-->|no|E(salida=falso)
   </tr>
 </table>
 <br>
-- Explicación: La puerta OR considera 2 entradas y una única salida en función de las entradas, tal que si alguna de las dos entradas está encendida, la salida lógica también está encendida; el único caso en dónde la salida se encuentra apagada es si ambas entradas se encuentran apagadas. Se puede recrear con 2 transistores conectados en paralelo.
+#### Explicación: 
+La puerta OR considera 2 entradas y una única salida en función de las entradas, tal que si alguna de las dos entradas está encendida, la salida lógica también está encendida; el único caso en dónde la salida se encuentra apagada es si ambas entradas se encuentran apagadas. Se puede recrear con 2 transistores conectados en paralelo.
 
-Esta puerta se puede programar de la siguiente forma:
+#### Esta puerta se puede programar de la siguiente forma:
 
 ```mermaid
 flowchart TD
@@ -173,7 +178,8 @@ C-->|no|E(salida=falso)
   </tr>
 </table>
 <br>
-- Explicación: La puerta XOR considera 2 entradas y una única salida en función de las entradas, tal que si alguna de las dos entradas está encendida, la salida lógica también está encendida; su comportamiento es muy parecido al de la puerta OR, solo que a diferencia de esta, se apaga si ambas entradas se encuentran encendidas. Se puede recrear haciendo un cirucito híbrido entre la puerta AND y la OR(conectando ambos transistores tanto en serie como en paralelo), el circuito OR mantiene sus salidas originales, mientras que el circuito AND tiene la salida conectada a tierra.
+#### Explicación: 
+La puerta XOR considera 2 entradas y una única salida en función de las entradas, tal que si alguna de las dos entradas está encendida, la salida lógica también está encendida; su comportamiento es muy parecido al de la puerta OR, solo que a diferencia de esta, se apaga si ambas entradas se encuentran encendidas. Se puede recrear haciendo un cirucito híbrido entre la puerta AND y la OR(conectando ambos transistores tanto en serie como en paralelo), el circuito OR mantiene sus salidas originales, mientras que el circuito AND tiene la salida conectada a tierra.
 
 Esta puerta se puede programar de la siguiente forma:
 
@@ -218,8 +224,23 @@ Los flip flops, biestables, o latch, son un circuito multivibrador(un tipo de ci
   </tr>
 </table>
 <br>
-- Explicación: Los flip flops RS asíncronos (sin reloj), son aquellos que pueden tener 4 estados, uno de set(o ajuste), uno de memoria(correspondiente al anterior), uno de reset(reajuste o borrado), el cual invierte las salidas del estado de set, junto con su correspondiente estado de memoria. Y un estado indeterminado( en el cuál no se cumple la condición de inversión entre Q y Q', y puede variar según los componentes empleados para construir el flip flop).
+
+#### Explicación: 
+Los flip flops RS asíncronos (sin reloj), son aquellos que pueden tener 4 estados, uno de set(o ajuste), uno de memoria(correspondiente al anterior), uno de reset(reajuste o borrado), el cual invierte las salidas del estado de set, junto con su correspondiente estado de memoria. Y un estado indeterminado( en el cuál no se cumple la condición de inversión entre Q y Q', y puede variar según los componentes empleados para construir el flip flop).
+
+#### Esta puerta se puede programar de la siguiente forma:
+
+```mermaid
+flowchart TD
+    A(rs flip flop asincrono) --> B --> b
+    B{entrada de datos set / reset}
+    b{si entradas = 1 o 0}--> |no se cumple|c[se convierten en enteros las entradas] --> C
+    b --> |se cumple|C{se verifica si ambas entradas son 1} --> |se cumple|D[ return XX]
+    C --> E[se calcula q y q_inverso]
+    E --> F[return q y q_inverso]
+```
 </details>
+
 
 ### rs flip flop (sincrono)
 
@@ -244,6 +265,17 @@ Los flip flops, biestables, o latch, son un circuito multivibrador(un tipo de ci
 </table>
 <br>
 - Explicación: 
+
+  ```mermaid
+flowchart TD
+    A(sr flip flop sincrono) --> B --> b
+    B{entrada de datos set / reset}
+    b{si entradas = 1 o 0}--> |no se cumple|c[se convierten en enteros las entradas] --> g
+    g{si clock = 0} --> |no se cumple|H[return estado anterior]
+    b -->|se cumple|g -->|se cumple| C{se verifica si ambas entradas son 1 y clock es 1} --> |se cumple|D[ return XX]
+    C --> E[se calcula q y q_inverso con el clock en el circuito]
+    E --> F[return q y q_inverso]
+```
 </details>
 
 ### d flip flop 
