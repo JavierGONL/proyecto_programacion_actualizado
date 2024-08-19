@@ -28,91 +28,103 @@ funciones_logicas = {
     "and" : {
         "input": [(180, 240), (180, 325)],
         "output": [(580, 280)],
-        "escala": [400,200]
+        "escala": [400, 200]
     },
     "or" : {
         "input": [(180, 240), (180, 325)],
         "output": [(580, 280)],
-        "escala": [400,200]
+        "escala": [400, 200]
     },
     "not" : {
         "input": [(180, 280)],
         "output": [(580, 280)],
-        "escala": [400,200]
+        "escala": [400, 200]
     },
     "xor" : {
         "input": [(180, 240), (180, 325)],
         "output": [(580, 280)],
-        "escala": [400,200]
+        "escala": [400, 200]
 
     },
     "nand" : {
         "input": [(180, 240), (180, 325)],
         "output": [(580, 280)],
-        "escala": [400,200]
+        "escala": [400, 200]
     },
     "nor" : {
         "input": [(180, 240), (180, 325)],
         "output": [(580, 280)],
-        "escala": [400,200]
+        "escala": [400, 200]
     },
     "xnor" : {
         "input": [(180, 240), (180, 325)],
         "output": [(580, 280)],
-        "escala": [400,200]
+        "escala": [400, 200]
     },
     "rs_flip_flop" : {
         "input": [(130, 420), (130, 160)],
-        "output": [(630, 190),(630, 380)],
-        "escala": [700,400]
+        "output": [(630, 190), (630, 380)],
+        "escala": [700, 400]
     },
     "sr_flip_flop" : {
-        "input": [(220, 240), (220, 550)],
-        "output": [(800, 280),(800, 510)],
-        "clock": (220, 390)
+        "input": [(80, 150), (80, 430)],
+        "output": [(660, 170), (660, 390)],
+        "clock": (80, 290),
+        "escala": [700, 400]
     },
     "jk_flip_flop" : {
-        "input": [(170, 290), (170, 510)],
-        "output": [(830, 305),(830, 495)],
-        "clock": (170, 400)
+        "input": [(70, 170), (70, 390)],
+        "output": [(680, 190), (680, 370)],
+        "clock": (70, 280),
+        "escala": [700, 400]
     },
     "d_flip_flop" : {
-        "input": [(220, 240)],
-        "output": [(800, 280),(800, 490)],
-        "clock": (220, 390)
+        "input": [(70, 150)],
+        "output": [(660, 180), (660, 390)],
+        "clock": (70, 285),
+        "escala": [700, 400]
     },
     "t_flip_flop" : {
-        "input": [(210, 300)],
-        "output": [(800, 310),(800, 480)],
-        "clock": (225, 387)
+        "input": [(60, 175)],
+        "output": [(680, 190), (680, 370)],
+        "clock": (60, 285),
+        "escala": [700, 400]
     },
     "semi_sumador" : {
-        "input": [(130, 350), (130, 480)],
-        "output": [(860, 514), (860, 313)]
-    },"semi_substractor" : {
-        "input": [(130, 350), (130, 480)],
-        "output": [(860, 514), (860, 313)]
+        "input": [(135, 235), (135, 330)],
+        "output": [(580, 220),(580, 345)],
+        "escala": [600, 300]
+    },
+    "semi_substractor" : {
+        "input": [(125, 200), (125, 370)],
+        "output": [(590, 215),(590, 350)],
+        "escala": [600, 300]
     },  
     "sumador_total" : {
-        "input": [(60, 430), (60, 530), (60, 480)],
-        "output": [(950, 410), (950, 340)]
+        "input": [(60, 150), (60, 190), (60, 275)],
+        "output": [(650, 190),(650, 335)],
+        "escala": [700, 400]
     },
     "restador_total" : {
-        "input": [(60, 430), (60, 530), (60, 480)],
-        "output": [(950, 410), (950, 340)]
+       "input": [(50, 150), (50, 190), (50, 230)],
+        "output": [(670, 165),(670, 355)],
+        "escala": [700, 400]
     },
     "multiplicador_4bits" : {
         "input": [(235, 80), (195, 80), (150, 80), (110, 80)],
-        "output": [(700, 200), (700, 300), (700, 400),(700, 500)]
+        "output": [(700, 200), (700, 300), (700, 400),(700, 500)],
+        "escala": [700,400]
     },
     "comparador_2_bits" : {
         "input": [(348, 150),  (275, 150), (160, 150), (80, 150)],
-        "output": [(870, 345), (870, 520), (870, 650)]
+        "output": [(870, 345), (870, 520), (870, 650)],
+        "escala": [700,400]
     },
     "contador_4_bits" : {
         "input" : [(120, 665)],
         "output": [(180, 340), (180, 280), (180, 225), (180, 165)],
-        "clock": (120, 510)
+        "clock": (120, 510),
+        "escala": [700,400]
     }
 }
 
@@ -183,7 +195,6 @@ def armador_boton_rect(funcion_logica , input_output_clock, cantidad_botones):
         clock_rect = Rect(x, y, 40, 40)
         return clock_rect
 
-
 # un funcion que actualiza el clock en el while loop
 def actualizar_reloj(valor_clock = 0):
     valor_clock = puerta_not(valor_clock)
@@ -195,6 +206,7 @@ def boton(ventana, boton_rect, valor_boton): # dibuja el boton y su texto
     texto = MAIN_FONT.render(str(valor_boton),True, NEGRO)
     ventana.blit(texto,(boton_rect.x+(boton_rect.width-texto.get_width())/2, boton_rect.y+(boton_rect.height-texto.get_height())/2))
 
+# dibuja el boton de inicio y verifica si uno la da al boton inicio
 def menu(ventana, ALTO, ANCHO):
     menu_rect = Rect(ALTO/2.3, ANCHO/2.3, 100, 60)
     boton(ventana, menu_rect, "Iniciar")
@@ -222,6 +234,7 @@ ANCHO = 800
 FPS = 30
 BLANCO = (255, 255, 255)
 NEGRO = (0, 0, 0)
+
 # configuracion pantalla
 VENTANA = display.set_mode((ANCHO, ALTO))
 display.set_caption('"simulacion digital"')
@@ -239,8 +252,8 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
     boton_avanzar=image.load("imagenes/simbolos/flechita_YES.png") 
     boton_avanzar=transform.scale(boton_avanzar,(203,77))
     boton_avanzar_rect= boton_avanzar.get_rect(center = (ANCHO-203/2, 77/2))
-    # fin del menu
-    puerta_grafico = image.load(direccion_imagen) # carga la  imagen
+    # grafico puerta
+    puerta_grafico = image.load(direccion_imagen) 
     puerta_grafico = transform.scale(puerta_grafico, (escala_grafico))
     puerta_grafico_rect = puerta_grafico.get_rect(center = (ANCHO/2, ALTO/2)) # posicion de la imagen
     botones_input_rect = armador_boton_rect(tipo_puerta, "input", cantidad_botones_input) # botones de input
@@ -252,10 +265,13 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
                 global valor_clock
                 clock_rect = armador_boton_rect(tipo_puerta, "clock", 1)
     resultado = [0]*cantidad_botones_output
+    # sonido
     mixer.music.load(direccion_narracion)
     mixer.music.play(1)
+    # banderas
     bandera_salida = True
     bandera = True
+    # bucle principal
     while bandera:
         # Limita el bucle a 60 fotogramas por segundo
         clock.tick(FPS)
@@ -280,8 +296,8 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
         for evento in event.get():
             if evento.type == QUIT:
                 sys.exit() 
-            # if evento.type == MOUSEBUTTONDOWN:
-            #     print(pos_mouse)
+            if evento.type == MOUSEBUTTONDOWN:
+                print(pos_mouse)
             if evento.type == MOUSEBUTTONDOWN and mouse.get_pressed()[0]:
                 for i in range(cantidad_botones_input):
                     if botones_input_rect[i].collidepoint(pos_mouse):
@@ -306,6 +322,8 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
                 boton(VENTANA, botones_output[i], resultado[i])
         display.update()
     return bandera_salida
+
+# funcion que simula los contadores
 def simulacion_contadores(cantidad_botones_input, cantidad_botones_output, direccion_imagen , tipo_puerta, puerta_logica_flip_flop_implementacion = "puerta_logica"):
     estado_anterior = [0,0,0,0]
     # estado_anterior_1 = 0 # estado anterior de los flip flops
@@ -395,6 +413,7 @@ def recopilatorio_simulaciones(puerta_logica_flip_flop_implementacion):
     elif puerta_logica_flip_flop_implementacion == "contador_4_bits":
         valor = simulacion_contadores(1, 4, "imagenes\\implementaciones\\contador_4_bits.png", "contador_4_bits", "implementacion","narraciones/NOT.mp3")
     return valor
+
 def menu_simulacion(VENTANA, ALTO, ANCHO):
     inicio = True
     bandera_1 = True
@@ -405,6 +424,18 @@ def menu_simulacion(VENTANA, ALTO, ANCHO):
     bandera_6 = True
     bandera_7 = True
     bandera_8 = True
+    bandera_9 = True
+    bandera_10 = True
+    bandera_11 = True
+    bandera_12 = True
+    bandera_13 = True
+    bandera_14 = True
+    bandera_15 = True
+    bandera_16 = True
+    bandera_17 = True
+    bandera_18 = True
+    bandera_19 = True
+    
     while True:
         while inicio:
             VENTANA.fill(BLANCO)
@@ -450,9 +481,68 @@ def menu_simulacion(VENTANA, ALTO, ANCHO):
                 bandera_6 = False
         if not bandera_8:
             bandera_7 = True
-            bandera_1 = recopilatorio_simulaciones("rs_flip_flop")
-            if bandera_1:
+            bandera_9 = recopilatorio_simulaciones("rs_flip_flop")
+            if bandera_9:
                 bandera_7 = False
+        if not bandera_9:   
+            bandera_8 = True
+            bandera_10 = recopilatorio_simulaciones("sr_flip_flop")
+            if bandera_10:
+                bandera_8 = False
+        if not bandera_10:
+            bandera_9 = True
+            bandera_11 = recopilatorio_simulaciones("jk_flip_flop")
+            if bandera_11:
+                bandera_9 = False
+        if not bandera_11:
+            bandera_10 = True
+            bandera_12 = recopilatorio_simulaciones("d_flip_flop")
+            if bandera_12:
+                bandera_10 = False
+        if not bandera_12:
+            bandera_11 = True
+            bandera_13 = recopilatorio_simulaciones("t_flip_flop")
+            if bandera_13:
+                bandera_11 = False
+        if not bandera_13:
+            bandera_12 = True
+            bandera_14 = recopilatorio_simulaciones("semi_sumador")
+            if bandera_14:
+                bandera_12 = False
+        if not bandera_14:
+            bandera_13 = True
+            bandera_15 = recopilatorio_simulaciones("semi_substractor")
+            if bandera_15:
+                bandera_13 = False
+        if not bandera_15:
+            bandera_14 = True
+            bandera_16 = recopilatorio_simulaciones("sumador_total")
+            if bandera_16:
+                bandera_14 = False
+        if not bandera_16:
+            bandera_15 = True
+            bandera_17 = recopilatorio_simulaciones("restador_total")
+            if bandera_17:
+                bandera_15 = False
+        if not bandera_17:
+            bandera_16 = True
+            bandera_18 = recopilatorio_simulaciones("multiplicador_4bits")
+            if bandera_18:
+                bandera_16 = False
+        if not bandera_18:
+            bandera_17 = True
+            bandera_19 = recopilatorio_simulaciones("comparador_2_bits")
+            if bandera_19:
+                bandera_17 = False
+        # if not bandera_19:
+        #     bandera_18 = True
+        #     bandera_20 = recopilatorio_simulaciones("contador_4_bits")
+        #     if bandera_20:
+        #         bandera_18 = False
+        if not bandera_19:
+            bandera_19 = True
+            inicio = True
+
 
 if __name__ == "__main__":
 #* descomenten para simular alguna puerta logica, flip flop o implementacion
@@ -473,8 +563,8 @@ if __name__ == "__main__":
     #recopilatorio_simulaciones("semi_substractor")
     #recopilatorio_simulaciones("sumador_total")
     #recopilatorio_simulaciones("restador_total")
-    #recopilatorio_simulaciones("multiplicador_4bits")
-    #recopilatorio_simulaciones("comparador_2_bits")
+    #recopilatorio_simulaciones("multiplicador_4bits") # falta actualizar pos botones
+    #recopilatorio_simulaciones("comparador_2_bits") # falta actualizar pos botones
     #recopilatorio_simulaciones("contador_4_bits") # marca nonetypes buscar que lo causa
     menu_simulacion(VENTANA, ALTO, ANCHO)
 # fin
