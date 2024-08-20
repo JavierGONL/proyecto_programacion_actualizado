@@ -43,7 +43,6 @@ funciones_logicas = {
         "input": [(180, 240), (180, 325)],
         "output": [(580, 280)],
         "escala": [400, 200]
-
     },
     "nand" : {
         "input": [(180, 240), (180, 325)],
@@ -563,7 +562,7 @@ if __name__ == "__main__":
     #recopilatorio_simulaciones("sumador_total")
     #recopilatorio_simulaciones("restador_total")
     #recopilatorio_simulaciones("multiplicador_4bits") # falta actualizar pos botones
-    recopilatorio_simulaciones("comparador_2_bits") # falta actualizar pos botones
+    # recopilatorio_simulaciones("comparador_2_bits") # falta actualizar pos botones
     #recopilatorio_simulaciones("contador_4_bits") # marca nonetypes buscar que lo causa
-    # menu_simulacion(VENTANA, ALTO, ANCHO)
+    menu_simulacion(VENTANA, ALTO, ANCHO)
 # fin
