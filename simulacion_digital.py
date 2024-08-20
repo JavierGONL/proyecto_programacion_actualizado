@@ -111,14 +111,14 @@ funciones_logicas = {
         "escala": [700, 400]
     },
     "multiplicador_4bits" : {
-        "input": [(235, 80), (195, 80), (150, 80), (110, 80)],
-        "output": [(700, 200), (700, 300), (700, 400),(700, 500)],
+        "input": [(225, 90), (180, 90), (130, 90), (90, 90)],
+        "output": [(680, 180), (680, 255), (680, 345),(680, 420)],
         "escala": [700,400]
     },
     "comparador_2_bits" : {
         "input": [(348, 150),  (275, 150), (160, 150), (80, 150)],
-        "output": [(870, 345), (870, 520), (870, 650)],
-        "escala": [700,400]
+        "output": [(680, 200), (680, 345), (680, 420)],
+        "escala": [800,400]
     },
     "contador_4_bits" : {
         "input" : [(120, 665)],
@@ -564,7 +564,7 @@ if __name__ == "__main__":
     #recopilatorio_simulaciones("sumador_total")
     #recopilatorio_simulaciones("restador_total")
     #recopilatorio_simulaciones("multiplicador_4bits") # falta actualizar pos botones
-    #recopilatorio_simulaciones("comparador_2_bits") # falta actualizar pos botones
+    recopilatorio_simulaciones("comparador_2_bits") # falta actualizar pos botones
     #recopilatorio_simulaciones("contador_4_bits") # marca nonetypes buscar que lo causa
-    menu_simulacion(VENTANA, ALTO, ANCHO)
+    # menu_simulacion(VENTANA, ALTO, ANCHO)
 # fin
