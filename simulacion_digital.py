@@ -118,7 +118,7 @@ funciones_logicas = {
     "comparador_2_bits" : {
         "input": [(348, 150),  (275, 150), (160, 150), (80, 150)],
         "output": [(680, 200), (680, 345), (680, 420)],
-        "escala": [800,400]
+        "escala": [700,400]
     },
     "contador_4_bits" : {
         "input" : [(120, 665)],
