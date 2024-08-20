@@ -8,7 +8,6 @@
   * - registros
   * - decodificador de 1 bit a 7 segmentos
   * - contador de 8 bits y un algoritmo para hacerlos porque ahora estan un poco mal implementados
-  * - remplazar las imagenes feas por una construidas en el simulador web (en proceso)
   * - optimizar el codigo
   * - encontrar errores
   *
@@ -116,8 +115,8 @@ funciones_logicas = {
         "escala": [700,400]
     },
     "comparador_2_bits" : {
-        "input": [(348, 150),  (275, 150), (160, 150), (80, 150)],
-        "output": [(680, 200), (680, 345), (680, 420)],
+        "input": [(105, 100),  (160, 100), (250, 100), (300, 100)],
+        "output": [(680, 240), (680, 355), (680, 430)],
         "escala": [700,400]
     },
     "contador_4_bits" : {
