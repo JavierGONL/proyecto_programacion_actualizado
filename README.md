@@ -231,7 +231,7 @@ C-->|no|E(salida=falso)
 <br>
 
 #### Explicacion: 
-La puerta NAND considera 2 entradas y una única salida en función de las entradas, siendo la versión negada de la puerta AND, esta enciende la salida mientras las dos entradas no se encuentren simultaneamente encendidas.
+La puerta NAND considera 2 entradas y una única salida en función de las entradas, siendo la versión negada de la puerta AND, esta enciende la salida mientras las dos entradas no se encuentren simultaneamente encendidas. Se puede contruir con los componentes de una puerta AND y una puerta NOT en la salida de estos.
 
 #### Esta puerta lógica se puede programar de la siguiente forma:
 
