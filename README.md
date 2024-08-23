@@ -36,6 +36,7 @@ Las puertas lógicas son componentes fundamentales en la electrónica digital. S
 <br>
 
 ##### Explicación: 
+
 La puerta lógica YES considera una única entrada y una única salida, la salida tiene siempre el mismo valor que la entrada. Se puede recrear con un transistor.
 
 #### Esta puerta lógica se puede programar de la siguiente manera:
@@ -68,6 +69,7 @@ C-->|no|E(salida=falso)
 <br>
 
 #### Explicación: 
+
 La puerta lógica NOT considera una única entrada y una única salida, la salida tiene siempre el valor inverso al de la entrada. Esta puerta se utiliza para crear puertas como la NAND o la NOR entre otras, al colocarse en la salida de la puerta que se desea invertir. Se puede recrear con un transistor cuya salida conecta a tierra y un nodo previo al colector, donde se encuentra la salida lógica.
 
 #### Esta puerta lógica se puede programar de la siguiente manera:
@@ -107,7 +109,8 @@ C-->|no|E(salida=verdadero)
 </table>
 <br>
 
-#### Explicacion: 
+#### Explicacion:
+
 La puerta AND considera 2 entradas y una única salida en función de las entradas, encendiendose unicamente si ambas entradas están encendidas; en los otros casos la puerta se mantiene apagada. Se puede recrear con 2 transistores conectados en serie.
 
 #### Esta puerta lógica se puede programar de la siguiente forma:
@@ -146,7 +149,8 @@ C-->|no|E(salida=falso)
 </table>
 <br>
   
-#### Explicación: 
+#### Explicación:
+
 La puerta OR considera 2 entradas y una única salida en función de las entradas, tal que si alguna de las dos entradas está encendida, la salida lógica también está encendida; el único caso en dónde la salida se encuentra apagada es si ambas entradas se encuentran apagadas. Se puede recrear con 2 transistores conectados en paralelo.
 
 #### Esta puerta se puede programar de la siguiente forma:
@@ -230,7 +234,8 @@ C-->|no|E(salida=falso)
 </table>
 <br>
 
-#### Explicacion: 
+#### Explicacion:
+
 La puerta NAND considera 2 entradas y una única salida en función de las entradas, siendo la versión negada de la puerta AND, esta enciende la salida mientras las dos entradas no se encuentren simultaneamente encendidas. Se puede contruir con los componentes de una puerta AND y una puerta NOT en la salida de estos.
 
 #### Esta puerta lógica se puede programar de la siguiente forma:
@@ -270,7 +275,8 @@ C-->|no|E(salida=verdadero)
 </table>
 <br>
   
-#### Explicación: 
+#### Explicación:
+
 La puerta NOR considera 2 entradas y una única salida en función de las entradas, al tratarse de la negación de la puerta OR, esta se enciende unicamente si ambas entradas están encendidas. Se puede construir como una puerta OR seguida de una puerta NOT.
 
 #### Esta puerta se puede programar de la siguiente forma:
