@@ -243,6 +243,47 @@ F-->C{¿Todas las entradas son verdaderas?}
 C-->|sí|D(salida=falso)
 C-->|no|E(salida=verdadero)
 ```
+
+### puerta OR
+
+<details><summary>explicacion</summary>
+  #### tabla de verdad:
+  <table>
+     <tr>
+    <td> a </td> <td> b </td> <td> salida </td>
+  </tr>
+  <tr>
+    <td> 0 </td> <td> 0 </td> <td> 1 </td>
+  </tr>
+  <tr>
+    <td> 0 </td> <td> 1 </td> <td> 0 </td>
+  </tr>
+     <tr>
+    <td> 1 </td> <td> 0 </td> <td> 0 </td>
+  </tr>
+     <tr>
+    <td> 1 </td> <td> 1 </td> <td> 0 </td>
+  </tr>
+</table>
+<br>
+  
+#### Explicación: 
+La puerta NOR considera 2 entradas y una única salida en función de las entradas
+
+#### Esta puerta se puede programar de la siguiente forma:
+
+```mermaid
+flowchart TD
+A(Puerta OR)-->B[Establecer valores lógicos, como 0=falso y 1=verdadero siendo inversos]
+B-->F[Establecer un número n de entradas]
+F-->C{¿Alguna de las entradas es verdadera?}
+C-->|sí|D(salida=verdadero)
+C-->|no|E(salida=falso)
+```
+
+
+</details>
+
 ## Flip flops
 
 Los flip flops, biestables, o latch, son un circuito multivibrador(un tipo de circuito que puede generar una onda cuadrada), el cual pude almacenar 4 estados estables( estados en los cuales entrega información). Son las unidades básicas de memoria en lógica secuencial.
