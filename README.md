@@ -414,9 +414,9 @@ flowchart TD
     A(sr flip flop sincrono) --> B --> b
     B{entrada de datos set / reset}
     b{si entradas = 1 o 0}--> |no se cumple|c[se convierten en enteros las entradas] --> g
-    g{si clock = 0} --> |no se cumple|H[return estado anterior]
+    g{si clock = 1} --> |no se cumple|H[return estado anterior]
     b -->|se cumple|g -->|se cumple| C{se verifica si ambas entradas son 1 y clock es 1} --> |se cumple|D[ return XX]
-    C --> E[se calcula q y q_inverso con el clock en el circuito]
+    C --> E[se calcula q y q_inverso con el clock y las entradas del circuito]
     E --> F[return q y q_inverso]
 ```
 </details>
@@ -481,6 +481,16 @@ flowchart TD
 
 el circuito logico jk flip-flop es una versión modificada de un flip-flop S-R sin estado de salida “inválido”, en el que las antiguas entradas S y R han sido renombradas como J y K. Ahora, las puertas AND de 2 entradas se han reemplazado por puertas AND de 3 entradas que reciben retroalimentación de las salidas Q y no-Q. Esto asegura que las entradas J y K no se activen simultáneamente: J solo tiene efecto cuando el circuito está "reset", y K solo cuando está "set". Si ambas entradas son 1, el flip-flop alternará entre los estados "set" y "reset" con cada pulso de reloj.
 
+```mermaid
+flowchart TD
+    A(jk flip flop) --> B --> b
+    B{entrada de datos J / K, estado anterior,clock}
+    b{si entradas = 1 o 0}--> |no se cumple|c[se convierten en enteros las entradas] --> g
+    g{si clock = 1} --> |no se cumple|H[return estado anterior]
+    b -->|se cumple|g -->|se cumple| C{se verifica si ambas entradas son 1 y clock es 1} --> |se cumple|D[return estado anterior ::-1 ]
+    C --> E[se calcula q y q_inverso con el clock ylas entradas del circuito y el estado anterior en el circuito]
+    E --> F[return q y q_inverso]
+```
 </details>
 
 
