@@ -277,11 +277,11 @@ La puerta NOR considera 2 entradas y una única salida en función de las entrad
 
 ```mermaid
 flowchart TD
-A(Puerta OR)-->B[Establecer valores lógicos, como 0=falso y 1=verdadero siendo inversos]
+A(Puerta NOR)-->B[Establecer valores lógicos, como 0=falso y 1=verdadero siendo inversos]
 B-->F[Establecer un número n de entradas]
 F-->C{¿Alguna de las entradas es verdadera?}
-C-->|sí|D(salida=verdadero)
-C-->|no|E(salida=falso)
+C-->|sí|D(salida=falso)
+C-->|no|E(salida=fverdadero)
 ```
 
 
