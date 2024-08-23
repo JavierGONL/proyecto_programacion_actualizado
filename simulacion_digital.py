@@ -119,9 +119,9 @@ funciones_logicas = {
         "escala": [700,400]
     },
     "contador_4_bits" : {
-        "input" : [(120, 665)],
-        "output": [(180, 340), (180, 280), (180, 225), (180, 165)],
-        "clock": (120, 510),
+        "input" : [(120, 465)],
+        "output": [(70, 340), (70, 280), (70, 225), (70, 165)],
+        "clock": (120, 400),
         "escala": [700,400]
     }
 }
@@ -322,16 +322,30 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
     return bandera_salida
 
 # funcion que simula los contadores
-def simulacion_contadores(cantidad_botones_input, cantidad_botones_output, direccion_imagen , tipo_puerta, puerta_logica_flip_flop_implementacion = "puerta_logica"):
+def simulacion_contadores(cantidad_botones_input, cantidad_botones_output, direccion_imagen , tipo_puerta):
     estado_anterior = [0,0,0,0]
-    puerta_grafico = image.load(direccion_imagen)
-    puerta_grafico = transform.scale(puerta_grafico, (800, 600))
-    puerta_grafico_rect = puerta_grafico.get_rect(center=(800,600))
+    resultado_1 = 0
+    resultado_2 = 0
+    resultado_3 = 0
+    resultado_4 = 0
+    escala_grafico = funciones_logicas[tipo_puerta]["escala"]
+    # menu
+    boton_retroceder_menu=image.load("imagenes/simbolos/flechita_NOT.png")
+    boton_retroceder_menu=transform.scale(boton_retroceder_menu,(203,77))
+    boton_retroceder_rect_menu= boton_retroceder_menu.get_rect(center = (203/2, 77/2))
+    boton_avanzar=image.load("imagenes/simbolos/flechita_YES.png") 
+    boton_avanzar=transform.scale(boton_avanzar,(203,77))
+    boton_avanzar_rect= boton_avanzar.get_rect(center = (ANCHO-203/2, 77/2))
+    # grafico puerta
+    puerta_grafico = image.load(direccion_imagen) 
+    puerta_grafico = transform.scale(puerta_grafico, (escala_grafico))
+    puerta_grafico_rect = puerta_grafico.get_rect(center = (ANCHO/1.8, ALTO/1.8)) # posicion de la imagen
     botones_input_rect = armador_boton_rect(tipo_puerta, "input", cantidad_botones_input) # botones de input
     botones_input_valor = [0]*cantidad_botones_input
     botones_output = armador_boton_rect(tipo_puerta, "output", cantidad_botones_output) # botones de output
     global valor_clock
     clock_rect = armador_boton_rect(tipo_puerta, "clock", 1)
+    bandera_salida = True
     bandera = True
     while bandera:
         # Limita el bucle a 60 fotogramas por segundo
@@ -342,6 +356,9 @@ def simulacion_contadores(cantidad_botones_input, cantidad_botones_output, direc
         VENTANA.blit(puerta_grafico, puerta_grafico_rect)
         # dibujar el texto de la imagen
         VENTANA.blit(MAIN_FONT.render(f"{tipo_puerta.replace("_"," ")}", True, "black"), (ALTO/2.3, 100)) # texto de la imagen
+        #dibujar los botones de navegacion:
+        VENTANA.blit(boton_retroceder_menu,boton_retroceder_rect_menu) # retroceder
+        VENTANA.blit(boton_avanzar,boton_avanzar_rect) # avanzar
         # dibujar los botones
         for i in range(cantidad_botones_input):
             boton(VENTANA, botones_input_rect[i], botones_input_valor[i])
@@ -356,26 +373,37 @@ def simulacion_contadores(cantidad_botones_input, cantidad_botones_output, direc
                 for i in range(cantidad_botones_input):
                     if botones_input_rect[i].collidepoint(pos_mouse):
                         botones_input_valor[i] = puerta_not(botones_input_valor[i])
+                if boton_avanzar_rect.collidepoint(pos_mouse):
+                    bandera_salida = False
+                    bandera = False
+                if boton_retroceder_rect_menu.collidepoint(pos_mouse):
+                    bandera_salida = True
+                    bandera = False
             if evento.type == temporizador: # temporizador 
                 valor_clock = actualizar_reloj() # actualziar el reloj por el valor 1 o 0
                 if valor_clock == 1: 
-                        estado_anterior[0] = import_puertas(tipo_puerta, valor_clock, estado_anterior[0], *botones_input_valor)
-                        for i in range(3):
-                            estado_anterior[i + 1] = import_puertas(tipo_puerta, estado_anterior[i], estado_anterior[i + 1], *botones_input_valor)
-            for i in range(cantidad_botones_output):
-                boton(VENTANA, botones_output[0], estado_anterior[0])
+                    resultado_1 = import_puertas(tipo_puerta, valor_clock, estado_anterior[0], *botones_input_valor)
+                    if estado_anterior[0] == 1:
+                        resultado_2 = import_puertas(tipo_puerta, estado_anterior[0], estado_anterior[1], *botones_input_valor)
+                    if estado_anterior[0] == 1 and  estado_anterior[1] == 1:
+                        resultado_3 = import_puertas(tipo_puerta, estado_anterior[1], estado_anterior[2], *botones_input_valor)
+                        if estado_anterior[0] == 1 and  estado_anterior[1] == 1 and estado_anterior[2] == 1:
+                            resultado_4 = import_puertas(tipo_puerta, estado_anterior[2], estado_anterior[3], *botones_input_valor)
+                estado_anterior = [resultado_1, resultado_2, resultado_3, resultado_4]
+        for i in range(cantidad_botones_output):
+            boton(VENTANA, botones_output[i], estado_anterior[i])
         display.update()
 
 # funcion que recopila las simulaciones
 def recopilatorio_simulaciones(puerta_logica_flip_flop_implementacion):
     if puerta_logica_flip_flop_implementacion == "and":
-        valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_and.png", "and","puerta_logica","narraciones/AND.mp3")
+        valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_and.png", "and","puerta_logica","narraciones\\AND.mp3")
     elif puerta_logica_flip_flop_implementacion == "or":
-        valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_or.png", "or", "puerta_logica","narraciones/OR.mp3")
+        valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_or.png", "or", "puerta_logica","narraciones\\OR.mp3")
     elif puerta_logica_flip_flop_implementacion == "not":
-        valor = simulacion(1, 1, "imagenes\\puertas_logicas\\puerta_not.png", "not", "puerta_logica","narraciones/NOT.mp3") #cambiar en todas menos esta
+        valor = simulacion(1, 1, "imagenes\\puertas_logicas\\puerta_not.png", "not", "puerta_logica","narraciones\\NOT.mp3") #cambiar en todas menos esta
     elif puerta_logica_flip_flop_implementacion == "xor":
-        valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_xor.png", "xor", "puerta_logica","narraciones/XOR.mp3")
+        valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_xor.png", "xor", "puerta_logica","narraciones\\XOR.mp3")
     elif puerta_logica_flip_flop_implementacion == "nand":
         valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_nand.png", "nand", "puerta_logica","narraciones/NOT.mp3")
     elif puerta_logica_flip_flop_implementacion == "nor":
@@ -383,7 +411,7 @@ def recopilatorio_simulaciones(puerta_logica_flip_flop_implementacion):
     elif puerta_logica_flip_flop_implementacion == "xnor":
         valor = simulacion(2, 1, "imagenes\\puertas_logicas\\puerta_xnor.png", "xnor", "puerta_logica","narraciones/NOT.mp3")
     elif puerta_logica_flip_flop_implementacion == "rs_flip_flop":
-        valor = simulacion(2, 2, "imagenes\\flip_flops\\rs_flip_flop.png", "rs_flip_flop", "flip_flop","narraciones/RS_flip_flop.mp3")
+        valor = simulacion(2, 2, "imagenes\\flip_flops\\rs_flip_flop.png", "rs_flip_flop", "flip_flop","narraciones\\RS_flip_flop.mp3")
     elif puerta_logica_flip_flop_implementacion == "sr_flip_flop":
         valor = simulacion(2, 2, "imagenes\\flip_flops\\sr_flip_flop.png", "sr_flip_flop", "flip_flop","narraciones/NOT.mp3")
     elif puerta_logica_flip_flop_implementacion == "jk_flip_flop":
@@ -405,7 +433,7 @@ def recopilatorio_simulaciones(puerta_logica_flip_flop_implementacion):
     elif puerta_logica_flip_flop_implementacion == "comparador_2_bits":
         valor = simulacion(4, 3, "imagenes\\implementaciones\\comparador_2_bits.png", "comparador_2_bits", "implementacion","narraciones/NOT.mp3")
     elif puerta_logica_flip_flop_implementacion == "contador_4_bits":
-        valor = simulacion_contadores(1, 4, "imagenes\\implementaciones\\contador_4_bits.png", "contador_4_bits", "implementacion","narraciones/NOT.mp3")
+        valor = simulacion_contadores(1, 4, "imagenes\\implementaciones\\contador_4_bits.png", "contador_4_bits")
     return valor
 
 def menu_simulacion(VENTANA, ALTO, ANCHO):
@@ -429,6 +457,9 @@ def menu_simulacion(VENTANA, ALTO, ANCHO):
     bandera_17 = True
     bandera_18 = True
     bandera_19 = True
+    bandera_20 = True
+    # bandera_21 = True
+    
     while True:
         while inicio:
             VENTANA.fill(BLANCO)
@@ -467,10 +498,10 @@ def menu_simulacion(VENTANA, ALTO, ANCHO):
             bandera_7 = recopilatorio_simulaciones("nor")
             if bandera_7:
                 bandera_5 = False
-        if bandera_7 == False:
+        if not bandera_7:
             bandera_6 = True
             bandera_8 = recopilatorio_simulaciones("xnor")
-            if bandera_8 == True:
+            if bandera_8:
                 bandera_6 = False
         if not bandera_8:
             bandera_7 = True
@@ -527,13 +558,13 @@ def menu_simulacion(VENTANA, ALTO, ANCHO):
             bandera_19 = recopilatorio_simulaciones("comparador_2_bits")
             if bandera_19:
                 bandera_17 = False
-        # if not bandera_19:
-        #     bandera_18 = True
-        #     bandera_20 = recopilatorio_simulaciones("contador_4_bits")
-        #     if bandera_20:
-        #         bandera_18 = False
         if not bandera_19:
-            bandera_19 = True
+            bandera_18 = True
+            bandera_20 = recopilatorio_simulaciones("contador_4_bits")
+            if bandera_20:
+                bandera_18 = False
+        if not bandera_20:
+            bandera_20 = True
             inicio = True
 
 
@@ -558,6 +589,7 @@ if __name__ == "__main__":
     #recopilatorio_simulaciones("restador_total")
     #recopilatorio_simulaciones("multiplicador_4bits")
     # recopilatorio_simulaciones("comparador_2_bits")
-    #recopilatorio_simulaciones("contador_4_bits") # marca nonetypes buscar que lo causa
+    # recopilatorio_simulaciones("contador_4_bits") # marca nonetypes buscar que lo causa
+    # recopilatorio_simulaciones("contador_8_bits")
     menu_simulacion(VENTANA, ALTO, ANCHO)
 # fin
