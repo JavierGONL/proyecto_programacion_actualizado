@@ -7,13 +7,13 @@
 
 # proyecto_programacion
 
-Este proyecto fue realizado para  
+Este proyecto fue realizado para algo, aún no defnimos que, pero para algo, suponemos que para disdfrutar de programar
 
 ## diagramas y funcionamientos de las funciones
 
 funcionamiento de las puertas logicas en el proyecto
 
-### puertas logicas
+## puertas logicas
 
 Las puertas lógicas son componentes fundamentales en la electrónica digital. Se utilizan para realizar operaciones lógicas básicas en circuitos digitales y están basadas en el álgebra booleana.
 
