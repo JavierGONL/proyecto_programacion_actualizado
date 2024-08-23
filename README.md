@@ -271,7 +271,7 @@ C-->|no|E(salida=verdadero)
 <br>
   
 #### Explicación: 
-La puerta NOR considera 2 entradas y una única salida en función de las entradas, al tratarse de la inversión de la puerta OR, esta se enciende unicamente si ambas entradas están encendidas. Se puede construir como una puerta OR seguida de una puerta NOT.
+La puerta NOR considera 2 entradas y una única salida en función de las entradas, al tratarse de la negación de la puerta OR, esta se enciende unicamente si ambas entradas están encendidas. Se puede construir como una puerta OR seguida de una puerta NOT.
 
 #### Esta puerta se puede programar de la siguiente forma:
 
