@@ -243,11 +243,14 @@ F-->C{¿Todas las entradas son verdaderas?}
 C-->|sí|D(salida=falso)
 C-->|no|E(salida=verdadero)
 ```
+</details>
 
-### puerta OR
+### puerta NOR
 
 <details><summary>explicacion</summary>
-  #### tabla de verdad:
+
+#### tabla de verdad:
+
   <table>
      <tr>
     <td> a </td> <td> b </td> <td> salida </td>
