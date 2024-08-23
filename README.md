@@ -72,7 +72,7 @@ C-->|no|E(salida=falso)
 
 La puerta lógica NOT considera una única entrada y una única salida, la salida tiene siempre el valor inverso al de la entrada. Esta puerta se utiliza para crear puertas como la NAND o la NOR entre otras, al colocarse en la salida de la puerta que se desea invertir. Se puede recrear con un transistor cuya salida conecta a tierra y un nodo previo al colector, donde se encuentra la salida lógica.
 
-#### Esta puerta lógica se puede programar de la siguiente manera:
+#### Esta puerta lógica se programo de la siguiente manera:
 
 ```mermaid
 flowchart TD
@@ -113,7 +113,7 @@ C-->|no|E(salida=verdadero)
 
 La puerta AND considera 2 entradas y una única salida en función de las entradas, encendiendose unicamente si ambas entradas están encendidas; en los otros casos la puerta se mantiene apagada. Se puede recrear con 2 transistores conectados en serie.
 
-#### Esta puerta lógica se puede programar de la siguiente forma:
+#### Esta puerta lógica se programo de la siguiente forma:
 
 ```mermaid
 flowchart TD
@@ -153,7 +153,7 @@ C-->|no|E(salida=falso)
 
 La puerta OR considera 2 entradas y una única salida en función de las entradas, tal que si alguna de las dos entradas está encendida, la salida lógica también está encendida; el único caso en dónde la salida se encuentra apagada es si ambas entradas se encuentran apagadas. Se puede recrear con 2 transistores conectados en paralelo.
 
-#### Esta puerta se puede programar de la siguiente forma:
+#### Esta puerta se programo de la siguiente forma:
 
 ```mermaid
 flowchart TD
@@ -195,7 +195,7 @@ C-->|no|E(salida=falso)
 
 La puerta XOR considera 2 entradas y una única salida en función de las entradas, tal que si alguna de las dos entradas está encendida, la salida lógica también está encendida; su comportamiento es muy parecido al de la puerta OR, solo que a diferencia de esta, se apaga si ambas entradas se encuentran encendidas. Se puede recrear haciendo un cirucito híbrido entre la puerta AND y la OR(conectando ambos transistores tanto en serie como en paralelo), el circuito OR mantiene sus salidas originales, mientras que el circuito AND tiene la salida conectada a tierra.
 
-#### Esta puerta se puede programar de la siguiente forma:
+#### Esta puerta se programo de la siguiente forma:
 
 ```mermaid
 flowchart TD
@@ -238,7 +238,7 @@ C-->|no|E(salida=falso)
 
 La puerta NAND considera 2 entradas y una única salida en función de las entradas, siendo la versión negada de la puerta AND, esta enciende la salida mientras las dos entradas no se encuentren simultaneamente encendidas. Se puede contruir con los componentes de una puerta AND y una puerta NOT en la salida de estos.
 
-#### Esta puerta lógica se puede programar de la siguiente forma:
+#### Esta puerta se programo de la siguiente forma:
 
 ```mermaid
 flowchart TD
@@ -279,7 +279,7 @@ C-->|no|E(salida=verdadero)
 
 La puerta NOR considera 2 entradas y una única salida en función de las entradas, al tratarse de la negación de la puerta OR, esta se enciende unicamente si ambas entradas están encendidas. Se puede construir como una puerta OR seguida de una puerta NOT.
 
-#### Esta puerta se puede programar de la siguiente forma:
+#### Esta puerta se programo de la siguiente forma:
 
 ```mermaid
 flowchart TD
@@ -321,7 +321,7 @@ C-->|no|E(salida=verdadero)
 
 La puerta XNOR considera 2 entradas y una única salida en función de las entradas; al tratarse de la negación de la puerta XOR, esta unicamente enciende la salida si ambas entradas están apagadas, o si ambas entradas se encuentran encendidas. El circuito para construirla se basa en contruir una puerta XOR y colocarle una puerta NOT en la salida
 
-#### Esta puerta se puede programar de la siguiente forma:
+#### Esta puerta se programo de la siguiente forma:
 
 ```mermaid
 flowchart TD
@@ -342,7 +342,7 @@ Los flip flops, biestables, o latch, son un circuito multivibrador(un tipo de ci
 
 *pongamosle que sacado de wikipedia, de momento porque el profe no dijo que tocaba que utilizar fuentes*
 
-<details><summary>rs flip flop (asincrono)</summary>
+<details><summary>RS flip flop (asincrono)</summary>
   
   #### tabla de verdad:
   <table>
@@ -367,7 +367,7 @@ Los flip flops, biestables, o latch, son un circuito multivibrador(un tipo de ci
 #### Explicación: 
 Los flip flops RS asíncronos (sin reloj), son aquellos que pueden tener 4 estados, uno de set(o ajuste), uno de memoria(correspondiente al anterior), uno de reset(reajuste o borrado), el cual invierte las salidas del estado de set, junto con su correspondiente estado de memoria. Y un estado indeterminado( en el cuál no se cumple la condición de inversión entre Q y Q', y puede variar según los componentes empleados para construir el flip flop).
 
-#### Esta puerta se puede programar de la siguiente forma:
+#### Esta puerta se programo de la siguiente forma:
 
 ```mermaid
 flowchart TD
@@ -381,7 +381,7 @@ flowchart TD
 </details>
 
 
-<details><summary>rs flip flop (sincrono)</summary>
+<details><summary>RS flip flop (sincrono)</summary>
   
   ####  tabla de verdad:
   <table>
@@ -407,22 +407,22 @@ flowchart TD
 
 Los flip flops SR síncronos, a diferencia del asincrono espera el clock sea 1 para "activar" las entradas en el caso del clock sea 0 simplemente no pasa nada, estos flip flops tienen los mismos 4 estado que su version asincrona.
 
-#### Esta puerta se puede programar de la siguiente forma:
+#### Esta puerta se programo de la siguiente forma:
 
   ```mermaid
 flowchart TD
     A(sr flip flop sincrono) --> B --> b
     B{entrada de datos set / reset}
     b{si entradas = 1 o 0}--> |no se cumple|c[se convierten en enteros las entradas] --> g
-    g{si clock = 0} --> |no se cumple|H[return estado anterior]
+    g{si clock = 1} --> |no se cumple|H[return estado anterior]
     b -->|se cumple|g -->|se cumple| C{se verifica si ambas entradas son 1 y clock es 1} --> |se cumple|D[ return XX]
-    C --> E[se calcula q y q_inverso con el clock en el circuito]
+    C --> E[se calcula q y q_inverso con el clock y las entradas del circuito]
     E --> F[return q y q_inverso]
 ```
 </details>
 
 
-<details><summary> d flip flop </summary>
+<details><summary> D flip flop </summary>
   
   #### tabla de verdad:
 
@@ -444,7 +444,7 @@ flowchart TD
 
 simplemente es un rs flip flop con una sola entrada (d), en este flip flop de la entrada d va directo al set y para el reset se niega la entrada haciendo que este flip flop solo tenga dos estados, si d = 1, set = 1 y reset = 0, sino d = 0, set = 0 y reset = 1.
 
-#### Esta puerta se puede programar de la siguiente forma:
+#### Esta puerta se programo de la siguiente forma:
 
 ```mermaid
 flowchart TD
@@ -454,7 +454,7 @@ flowchart TD
 </details>
 
 
-<details><summary>jk flip flop</summary>
+<details><summary>JK flip flop</summary>
   
   #### tabla de verdad:
 
@@ -479,12 +479,24 @@ flowchart TD
 
 #### Explicación: 
 
-el jk flip flop,
+el circuito logico jk flip-flop es una versión modificada de un flip-flop S-R sin estado de salida “inválido”, en el que las antiguas entradas S y R han sido renombradas como J y K. Ahora, las puertas AND de 2 entradas se han reemplazado por puertas AND de 3 entradas que reciben retroalimentación de las salidas Q y no-Q. Esto asegura que las entradas J y K no se activen simultáneamente: J solo tiene efecto cuando el circuito está "reset", y K solo cuando está "set". Si ambas entradas son 1, el flip-flop alternará entre los estados "set" y "reset" con cada pulso de reloj.
 
+#### Esta puerta se programo de la siguiente forma:
+
+```mermaid
+flowchart TD
+    A(jk flip flop) --> B --> b
+    B{entrada de datos J / K, estado anterior,clock}
+    b{si entradas = 1 o 0}--> |no se cumple|c[se convierten en enteros las entradas] --> g
+    g{si clock = 1} --> |no se cumple|H[return estado anterior]
+    b -->|se cumple|g -->|se cumple| C{se verifica si ambas entradas son 1 y clock es 1} --> |se cumple|D[return estado anterior ::-1 ]
+    C --> E[se calcula q y q_inverso con el clock ylas entradas del circuito y el estado anterior en el circuito]
+    E --> F[return q y q_inverso]
+```
 </details>
 
 
-<details><summary>t flip flop</summary>
+<details><summary>T flip flop</summary>
   
   #### tabla de verdad:
 <table>
@@ -502,4 +514,14 @@ el jk flip flop,
 
 #### Explicación: 
 
+ El comportamiento de un flip-flop tipo T es equivalente al de un flip-flop tipo J-K con sus entradas J y K unidas. De este Modo, si la entrada T presenta un nivel bajo ‘0’ el dispositivo está en su modo de memoria, y si a la entrada T se encuentra a nivel alto ‘1’ el dispositivo cambia de estado(toggle).
+
+#### Esta puerta se programo de la siguiente forma:
+
+```mermaid
+flowchart TD
+    A(t flip flop) --> B --> b
+    B[entrada de datos J / K, estado anterior,clock]
+    b[J = t,K = t ]--> c[se pasan J,K como entradas a la funcion jk flip flop]
+```
 </details>
