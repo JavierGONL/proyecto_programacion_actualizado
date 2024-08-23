@@ -281,7 +281,7 @@ A(Puerta NOR)-->B[Establecer valores lógicos, como 0=falso y 1=verdadero siendo
 B-->F[Establecer un número n de entradas]
 F-->C{¿Alguna de las entradas es verdadera?}
 C-->|sí|D(salida=falso)
-C-->|no|E(salida=fverdadero)
+C-->|no|E(salida=verdadero)
 ```
 
 
