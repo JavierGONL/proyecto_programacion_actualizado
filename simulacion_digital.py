@@ -324,10 +324,6 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
 # funcion que simula los contadores
 def simulacion_contadores(cantidad_botones_input, cantidad_botones_output, direccion_imagen , tipo_puerta, puerta_logica_flip_flop_implementacion = "puerta_logica"):
     estado_anterior = [0,0,0,0]
-    # estado_anterior_1 = 0 # estado anterior de los flip flops
-    # estado_anterior_2 = 0 # estado anterior de los flip flops
-    # estado_anterior_3 = 0 # estado anterior de los flip flops
-    # estado_anterior_4 = 0 # estado anterior de los flip flops
     puerta_grafico = image.load(direccion_imagen)
     puerta_grafico = transform.scale(puerta_grafico, (800, 600))
     puerta_grafico_rect = puerta_grafico.get_rect(center=(800,600))
@@ -433,7 +429,6 @@ def menu_simulacion(VENTANA, ALTO, ANCHO):
     bandera_17 = True
     bandera_18 = True
     bandera_19 = True
-    
     while True:
         while inicio:
             VENTANA.fill(BLANCO)
@@ -561,8 +556,8 @@ if __name__ == "__main__":
     #recopilatorio_simulaciones("semi_substractor")
     #recopilatorio_simulaciones("sumador_total")
     #recopilatorio_simulaciones("restador_total")
-    #recopilatorio_simulaciones("multiplicador_4bits") # falta actualizar pos botones
-    # recopilatorio_simulaciones("comparador_2_bits") # falta actualizar pos botones
+    #recopilatorio_simulaciones("multiplicador_4bits")
+    # recopilatorio_simulaciones("comparador_2_bits")
     #recopilatorio_simulaciones("contador_4_bits") # marca nonetypes buscar que lo causa
     menu_simulacion(VENTANA, ALTO, ANCHO)
 # fin
