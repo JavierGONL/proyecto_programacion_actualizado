@@ -184,9 +184,10 @@ def comparador_2_bits(a0, a1, b0, b1):
 def multiplexor_2_1(entrada_1,entrada_2,selector): # conmutador de 2 canales
     salida = puerta_or(puerta_and((entrada_1),puerta_not(selector)), puerta_and(entrada_2,selector))
     return salida
-def decodificador_de_1bit_a_7_Segmentos(a):
-
-    return #! por hacer
+def binario_a_entero(lista):
+    binario_str = "".join(str(i) for i in lista[::-1])
+    binario_int = int(binario_str, 2)
+    return binario_int
 # contadores
 def contador_4_bits(t, clock, estado_anterior):
     estado_anterior = estado_anterior
