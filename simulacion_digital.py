@@ -126,7 +126,7 @@ funciones_logicas = {
     },
     "contador_8_bits" : {
         "input" : [(120, 465)],
-        "output": [(70, 340), (70, 280), (70, 225), (70, 165), (70, 100), (70, 50), (70, 10), (70, 465)],
+        "output": [(70, 340), (70, 280), (70, 225), (70, 165), (70, 100), (70, 75), (70, 50), (70, 25), (500, 280)],
         "clock": (120, 400),
         "escala": [800,500]
     }
@@ -404,18 +404,18 @@ def simulacion_contadores(cantidad_botones_input, cantidad_botones_output, direc
                     resultado_1 = import_puertas(tipo_puerta, valor_clock, estado_anterior[0], *botones_input_valor)
                     if estado_anterior[0] == 1:
                         resultado_2 = import_puertas(tipo_puerta, estado_anterior[0], estado_anterior[1], *botones_input_valor)
-                    if estado_anterior[0] == 1 and  estado_anterior[1] == 1:
+                    if puerta_and(estado_anterior[0],estado_anterior[1]) == 1:
                         resultado_3 = import_puertas(tipo_puerta, estado_anterior[1], estado_anterior[2], *botones_input_valor)
-                    if estado_anterior[0] == 1 and  estado_anterior[1] == 1 and estado_anterior[2] == 1:
+                    if puerta_and(estado_anterior[0], estado_anterior[1], estado_anterior[2]) == 1:
                         resultado_4 = import_puertas(tipo_puerta, estado_anterior[2], estado_anterior[3], *botones_input_valor)
                     if tipo_puerta == "contador_8_bits":
-                        if estado_anterior[0] == 1 and  estado_anterior[1] == 1 and estado_anterior[2] == 1 and estado_anterior[3] == 1:
+                        if puerta_and(estado_anterior[0], estado_anterior[1], estado_anterior[2], estado_anterior[3]) == 1:
                             resultado_5 = import_puertas(tipo_puerta, estado_anterior[3], estado_anterior[4], *botones_input_valor)
-                        if estado_anterior[0] == 1 and  estado_anterior[1] == 1 and estado_anterior[2] == 1 and estado_anterior[3] == 1 and estado_anterior[4] == 1:
+                        if puerta_and(estado_anterior[0], estado_anterior[1], estado_anterior[2], estado_anterior[3], estado_anterior[4]) == 1:
                             resultado_6 = import_puertas(tipo_puerta, estado_anterior[4], estado_anterior[5], *botones_input_valor)
-                        if estado_anterior[0] == 1 and  estado_anterior[1] == 1 and estado_anterior[2] == 1 and estado_anterior[3] == 1 and estado_anterior[4] == 1 and estado_anterior[5] == 1:
+                        if puerta_and(estado_anterior[0], estado_anterior[1], estado_anterior[2], estado_anterior[3], estado_anterior[4], estado_anterior[5]) == 1:
                             resultado_7 = import_puertas(tipo_puerta, estado_anterior[5], estado_anterior[6], *botones_input_valor)
-                        if estado_anterior[0] == 1 and  estado_anterior[1] == 1 and estado_anterior[2] == 1 and estado_anterior[3] == 1 and estado_anterior[4] == 1 and estado_anterior[5] == 1 and estado_anterior[6] == 1:
+                        if puerta_and(estado_anterior[0], estado_anterior[1], estado_anterior[2], estado_anterior[3], estado_anterior[4], estado_anterior[5], estado_anterior[6]) == 1:
                             resultado_8 = import_puertas(tipo_puerta, estado_anterior[6], estado_anterior[7], *botones_input_valor)
                 if tipo_puerta == "contador_4_bits":
                     estado_anterior = [resultado_1, resultado_2, resultado_3, resultado_4]
@@ -495,7 +495,6 @@ def menu_simulacion(VENTANA, ALTO, ANCHO):
     bandera_19 = True
     bandera_20 = True
     bandera_21 = True
-    
     while True:
         while inicio:
             VENTANA.fill(BLANCO)
@@ -607,7 +606,6 @@ def menu_simulacion(VENTANA, ALTO, ANCHO):
         if not bandera_21:
             bandera_21 = True
             inicio = True
-
 
 if __name__ == "__main__":
 #* descomenten para simular alguna puerta logica, flip flop o implementacion
