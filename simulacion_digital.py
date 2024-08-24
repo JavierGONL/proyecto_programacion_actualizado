@@ -468,6 +468,8 @@ def recopilatorio_simulaciones(puerta_logica_flip_flop_implementacion):
         valor = simulacion_contadores(1, 5, "imagenes\\flip_flops\\contador_4_bits.png", "contador_4_bits")
     elif puerta_logica_flip_flop_implementacion == "contador_8_bits":
         valor = simulacion_contadores(1, 9, "imagenes\\flip_flops\\contador_8_bits.png", "contador_8_bits")
+    # elif puerta_logica_flip_flop_implementacion == "registro_paralelo":
+    #     valor = simulacion_contadores(8, 8, "imagenes\\flip_flops\\registro_paralelo_pipo.png", "registro_paralelo")
     return valor
 
 def menu_simulacion(VENTANA, ALTO, ANCHO):
