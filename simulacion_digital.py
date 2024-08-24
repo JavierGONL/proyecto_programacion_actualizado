@@ -120,9 +120,15 @@ funciones_logicas = {
     },
     "contador_4_bits" : {
         "input" : [(120, 465)],
-        "output": [(70, 340), (70, 280), (70, 225), (70, 165)],
+        "output": [(70, 340), (70, 280), (70, 225), (70, 165) , (500, 280)],
         "clock": (120, 400),
         "escala": [700,400]
+    },
+    "contador_8_bits" : {
+        "input" : [(120, 465)],
+        "output": [(70, 340), (70, 280), (70, 225), (70, 165), (70, 100), (70, 50), (70, 10), (70, 465)],
+        "clock": (120, 400),
+        "escala": [800,500]
     }
 }
 
@@ -168,6 +174,8 @@ def import_puertas(tipo_puerta, valor_clock,estado_anterior = [0, 0],*args_entra
     elif tipo_puerta == "comparador_2_bits":
         return comparador_2_bits(*args_entrada)
     elif tipo_puerta == "contador_4_bits":
+        return contador_4_bits(*args_entrada, valor_clock, estado_anterior = estado_anterior)
+    elif tipo_puerta == "contador_8_bits":
         return contador_4_bits(*args_entrada, valor_clock, estado_anterior = estado_anterior)
 
 # arma el rect de los botones de input, output y clock
@@ -278,7 +286,7 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
         # dibujar la puerta logica
         VENTANA.blit(puerta_grafico, puerta_grafico_rect)
         # dibujar el texto de la imagen
-        VENTANA.blit(MAIN_FONT.render(f"{tipo_puerta.replace('_',' ')}", True, "black"), (ALTO/2, 25)) # texto de la imagen
+        VENTANA.blit(MAIN_FONT.render(f"{tipo_puerta.replace('_',' ')}", True, "black"), (ANCHO/2, 25)) # texto de la imagen
         #dibujar los botones de navegacion:
         VENTANA.blit(boton_retroceder_menu,boton_retroceder_rect_menu)
         if modo_abierto==False:
@@ -323,11 +331,22 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
 
 # funcion que simula los contadores
 def simulacion_contadores(cantidad_botones_input, cantidad_botones_output, direccion_imagen , tipo_puerta):
-    estado_anterior = [0,0,0,0]
-    resultado_1 = 0
-    resultado_2 = 0
-    resultado_3 = 0
-    resultado_4 = 0
+    if tipo_puerta == "contador_4_bits":
+        estado_anterior = [0,0,0,0]
+        resultado_1 = 0
+        resultado_2 = 0
+        resultado_3 = 0
+        resultado_4 = 0
+    else:
+        estado_anterior = [0,0,0,0,0,0,0,0]
+        resultado_1 = 0
+        resultado_2 = 0
+        resultado_3 = 0
+        resultado_4 = 0
+        resultado_5 = 0
+        resultado_6 = 0
+        resultado_7 = 0
+        resultado_8 = 0
     escala_grafico = funciones_logicas[tipo_puerta]["escala"]
     # menu
     boton_retroceder_menu=image.load("imagenes/simbolos/flechita_NOT.png")
@@ -355,7 +374,7 @@ def simulacion_contadores(cantidad_botones_input, cantidad_botones_output, direc
         # dibujar la puerta logica
         VENTANA.blit(puerta_grafico, puerta_grafico_rect)
         # dibujar el texto de la imagen
-        VENTANA.blit(MAIN_FONT.render(f"{tipo_puerta.replace("_"," ")}", True, "black"), (ALTO/2.3, 100)) # texto de la imagen
+        VENTANA.blit(MAIN_FONT.render(f"{tipo_puerta.replace("_"," ")}", True, "black"), (ALTO/2.3, 25)) # texto de la imagen
         #dibujar los botones de navegacion:
         VENTANA.blit(boton_retroceder_menu,boton_retroceder_rect_menu) # retroceder
         VENTANA.blit(boton_avanzar,boton_avanzar_rect) # avanzar
@@ -387,11 +406,24 @@ def simulacion_contadores(cantidad_botones_input, cantidad_botones_output, direc
                         resultado_2 = import_puertas(tipo_puerta, estado_anterior[0], estado_anterior[1], *botones_input_valor)
                     if estado_anterior[0] == 1 and  estado_anterior[1] == 1:
                         resultado_3 = import_puertas(tipo_puerta, estado_anterior[1], estado_anterior[2], *botones_input_valor)
-                        if estado_anterior[0] == 1 and  estado_anterior[1] == 1 and estado_anterior[2] == 1:
-                            resultado_4 = import_puertas(tipo_puerta, estado_anterior[2], estado_anterior[3], *botones_input_valor)
-                estado_anterior = [resultado_1, resultado_2, resultado_3, resultado_4]
-        for i in range(cantidad_botones_output):
+                    if estado_anterior[0] == 1 and  estado_anterior[1] == 1 and estado_anterior[2] == 1:
+                        resultado_4 = import_puertas(tipo_puerta, estado_anterior[2], estado_anterior[3], *botones_input_valor)
+                    if tipo_puerta == "contador_8_bits":
+                        if estado_anterior[0] == 1 and  estado_anterior[1] == 1 and estado_anterior[2] == 1 and estado_anterior[3] == 1:
+                            resultado_5 = import_puertas(tipo_puerta, estado_anterior[3], estado_anterior[4], *botones_input_valor)
+                        if estado_anterior[0] == 1 and  estado_anterior[1] == 1 and estado_anterior[2] == 1 and estado_anterior[3] == 1 and estado_anterior[4] == 1:
+                            resultado_6 = import_puertas(tipo_puerta, estado_anterior[4], estado_anterior[5], *botones_input_valor)
+                        if estado_anterior[0] == 1 and  estado_anterior[1] == 1 and estado_anterior[2] == 1 and estado_anterior[3] == 1 and estado_anterior[4] == 1 and estado_anterior[5] == 1:
+                            resultado_7 = import_puertas(tipo_puerta, estado_anterior[5], estado_anterior[6], *botones_input_valor)
+                        if estado_anterior[0] == 1 and  estado_anterior[1] == 1 and estado_anterior[2] == 1 and estado_anterior[3] == 1 and estado_anterior[4] == 1 and estado_anterior[5] == 1 and estado_anterior[6] == 1:
+                            resultado_8 = import_puertas(tipo_puerta, estado_anterior[6], estado_anterior[7], *botones_input_valor)
+                if tipo_puerta == "contador_4_bits":
+                    estado_anterior = [resultado_1, resultado_2, resultado_3, resultado_4]
+                else:
+                    estado_anterior = [resultado_1, resultado_2, resultado_3, resultado_4, resultado_5, resultado_6, resultado_7, resultado_8]
+        for i in range(cantidad_botones_output-1):
             boton(VENTANA, botones_output[i], estado_anterior[i])
+        boton(VENTANA, botones_output[-1], binario_a_entero(estado_anterior))
         display.update()
 
 # funcion que recopila las simulaciones
@@ -433,7 +465,9 @@ def recopilatorio_simulaciones(puerta_logica_flip_flop_implementacion):
     elif puerta_logica_flip_flop_implementacion == "comparador_2_bits":
         valor = simulacion(4, 3, "imagenes\\implementaciones\\comparador_2_bits.png", "comparador_2_bits", "implementacion","narraciones/NOT.mp3")
     elif puerta_logica_flip_flop_implementacion == "contador_4_bits":
-        valor = simulacion_contadores(1, 4, "imagenes\\implementaciones\\contador_4_bits.png", "contador_4_bits")
+        valor = simulacion_contadores(1, 5, "imagenes\\flip_flops\\contador_4_bits.png", "contador_4_bits")
+    elif puerta_logica_flip_flop_implementacion == "contador_8_bits":
+        valor = simulacion_contadores(1, 9, "imagenes\\flip_flops\\contador_8_bits.png", "contador_8_bits")
     return valor
 
 def menu_simulacion(VENTANA, ALTO, ANCHO):
@@ -458,7 +492,7 @@ def menu_simulacion(VENTANA, ALTO, ANCHO):
     bandera_18 = True
     bandera_19 = True
     bandera_20 = True
-    # bandera_21 = True
+    bandera_21 = True
     
     while True:
         while inicio:
@@ -564,7 +598,12 @@ def menu_simulacion(VENTANA, ALTO, ANCHO):
             if bandera_20:
                 bandera_18 = False
         if not bandera_20:
-            bandera_20 = True
+            bandera_19 = True
+            bandera_21 = recopilatorio_simulaciones("contador_8_bits")
+            if bandera_21:
+                bandera_19 = False
+        if not bandera_21:
+            bandera_21 = True
             inicio = True
 
 
@@ -589,7 +628,7 @@ if __name__ == "__main__":
     #recopilatorio_simulaciones("restador_total")
     #recopilatorio_simulaciones("multiplicador_4bits")
     # recopilatorio_simulaciones("comparador_2_bits")
-    # recopilatorio_simulaciones("contador_4_bits") # marca nonetypes buscar que lo causa
+    # recopilatorio_simulaciones("contador_4_bits")
     # recopilatorio_simulaciones("contador_8_bits")
     menu_simulacion(VENTANA, ALTO, ANCHO)
 # fin
