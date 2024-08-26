@@ -336,6 +336,10 @@ C-->|no|E(salida=verdadero)
 
 </details>
 
+# implementaciones de las puertas lógicas 
+
+***por hacer***
+
 ## Flip flops
 
 Los flip flops, biestables, o latch, son un circuito multivibrador(un tipo de circuito que puede generar una onda cuadrada), el cual pude almacenar 4 estados estables( estados en los cuales entrega información). Son las unidades básicas de memoria en lógica secuencial.
