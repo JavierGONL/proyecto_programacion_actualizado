@@ -483,7 +483,7 @@ flowchart TD
 
 #### Explicación: 
 
-el circuito logico jk flip-flop es una versión modificada de un flip-flop R-S sin estado de salida “inválido”, en el que las antiguas entradas S y R han sido renombradas como J y K. Ahora, las puertas AND de 2 entradas se han reemplazado por puertas AND de 3 entradas que reciben retroalimentación de las salidas Q y no-Q. Esto asegura que las entradas J y K no se activen simultáneamente: J solo tiene efecto cuando el circuito está "reset", y K solo cuando está "set". Si ambas entradas son 1, el flip-flop alternará entre los estados "set" y "reset" con cada pulso de reloj.
+El circuito logico jk flip-flop es una versión modificada de un flip-flop R-S sin estado de salida “inválido”, en el que las antiguas entradas R y S han sido renombradas como J y K. Ahora, las puertas AND de 2 entradas se han reemplazado por puertas AND de 3 entradas que reciben retroalimentación de las salidas Q y no-Q. Esto asegura que las entradas J y K no se activen simultáneamente: J solo tiene efecto cuando el circuito está "reset", y K solo cuando está "set". Si ambas entradas son 1, el flip-flop alternará entre los estados "set" y "reset" con cada pulso de reloj.
 
 #### Este circutio se programo de la siguiente forma:
 
@@ -518,7 +518,7 @@ flowchart TD
 
 #### Explicación: 
 
- El comportamiento de un flip-flop tipo T es equivalente al de un flip-flop tipo J-K con sus entradas J y K unidas. De este Modo, si la entrada T presenta un nivel bajo ‘0’ el dispositivo está en su modo de memoria, y si a la entrada T se encuentra a nivel alto ‘1’ el dispositivo cambia de estado(toggle).
+El comportamiento de un flip-flop tipo T es equivalente al de un flip-flop tipo J-K con sus entradas J y K unidas. De este Modo, si la entrada T presenta un nivel bajo ‘0’ el dispositivo está en su modo de memoria, y si a la entrada T se encuentra a nivel alto ‘1’ el dispositivo cambia de estado(toggle).
 
 #### Este circuito se programo de la siguiente forma:
 
