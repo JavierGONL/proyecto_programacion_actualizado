@@ -236,7 +236,7 @@ C-->|no|E(salida=falso)
 
 #### Explicacion:
 
-La puerta NAND considera 2 entradas y una única salida en función de las entradas, siendo la versión negada de la puerta AND, esta enciende la salida mientras las dos entradas no se encuentren simultaneamente encendidas. Se puede contruir con los componentes de una puerta AND y una puerta NOT en la salida de estos.
+La puerta NAND considera 2 entradas y una única salida en función de las entradas; siendo la versión negada de la puerta AND, esta enciende la salida mientras las dos entradas no se encuentren simúltaneamente encendidas. Se puede contruir con los componentes de una puerta AND y una puerta NOT en la salida de estos.
 
 #### Esta puerta se programo de la siguiente forma:
 
@@ -277,7 +277,7 @@ C-->|no|E(salida=verdadero)
   
 #### Explicación:
 
-La puerta NOR considera 2 entradas y una única salida en función de las entradas, al tratarse de la negación de la puerta OR, esta se enciende unicamente si ambas entradas están encendidas. Se puede construir como una puerta OR seguida de una puerta NOT.
+La puerta NOR considera 2 entradas y una única salida en función de las entradas; al tratarse de la negación de la puerta OR, esta se enciende únicamente si ambas entradas están encendidas. Se puede construir como una puerta OR seguida de una puerta NOT.
 
 #### Esta puerta se programo de la siguiente forma:
 
@@ -409,9 +409,9 @@ flowchart TD
   
 #### Explicación: 
 
-Los flip flops SR síncronos, a diferencia del asincrono espera el clock sea 1 para "activar" las entradas en el caso del clock sea 0 simplemente no pasa nada, estos flip flops tienen los mismos 4 estado que su version asincrona.
+Los flip flops RS síncronos, a diferencia del asincrono espera a que la entrada del reloj (clock) sea 1 para "activar" las entradas; en el caso de que el clock sea 0 simplemente no pasa nada. Estos flip flops tienen los mismos 4 estado que su version asincrona.
 
-#### Esta puerta se programo de la siguiente forma:
+#### Este circuito se programo de la siguiente forma:
 
   ```mermaid
 flowchart TD
@@ -446,9 +446,9 @@ flowchart TD
   
 #### Explicación:
 
-simplemente es un rs flip flop con una sola entrada (d), en este flip flop de la entrada d va directo al set y para el reset se niega la entrada haciendo que este flip flop solo tenga dos estados, si d = 1, set = 1 y reset = 0, sino d = 0, set = 0 y reset = 1.
+Simplemente es un RS flip flop con una sola entrada (d), en este flip flop la entrada d va directo al set y para el reset se niega la entrada haciendo que este flip flop solo tenga dos estados, si d = 1, set = 1 y reset = 0, sino d = 0, set = 0 y reset = 1.
 
-#### Esta puerta se programo de la siguiente forma:
+#### Este circuito se programo de la siguiente forma:
 
 ```mermaid
 flowchart TD
@@ -483,9 +483,9 @@ flowchart TD
 
 #### Explicación: 
 
-el circuito logico jk flip-flop es una versión modificada de un flip-flop S-R sin estado de salida “inválido”, en el que las antiguas entradas S y R han sido renombradas como J y K. Ahora, las puertas AND de 2 entradas se han reemplazado por puertas AND de 3 entradas que reciben retroalimentación de las salidas Q y no-Q. Esto asegura que las entradas J y K no se activen simultáneamente: J solo tiene efecto cuando el circuito está "reset", y K solo cuando está "set". Si ambas entradas son 1, el flip-flop alternará entre los estados "set" y "reset" con cada pulso de reloj.
+el circuito logico jk flip-flop es una versión modificada de un flip-flop R-S sin estado de salida “inválido”, en el que las antiguas entradas S y R han sido renombradas como J y K. Ahora, las puertas AND de 2 entradas se han reemplazado por puertas AND de 3 entradas que reciben retroalimentación de las salidas Q y no-Q. Esto asegura que las entradas J y K no se activen simultáneamente: J solo tiene efecto cuando el circuito está "reset", y K solo cuando está "set". Si ambas entradas son 1, el flip-flop alternará entre los estados "set" y "reset" con cada pulso de reloj.
 
-#### Esta puerta se programo de la siguiente forma:
+#### Este circutio se programo de la siguiente forma:
 
 ```mermaid
 flowchart TD
@@ -520,7 +520,7 @@ flowchart TD
 
  El comportamiento de un flip-flop tipo T es equivalente al de un flip-flop tipo J-K con sus entradas J y K unidas. De este Modo, si la entrada T presenta un nivel bajo ‘0’ el dispositivo está en su modo de memoria, y si a la entrada T se encuentra a nivel alto ‘1’ el dispositivo cambia de estado(toggle).
 
-#### Esta puerta se programo de la siguiente forma:
+#### Este circuito se programo de la siguiente forma:
 
 ```mermaid
 flowchart TD
