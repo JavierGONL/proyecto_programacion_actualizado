@@ -225,7 +225,7 @@ def menu(ventana, ALTO, ANCHO):
             
 # inicializacion pygame
 init()
-
+mixer.init()
 # Configura el reloj
 clock = time.Clock()
 
@@ -258,6 +258,9 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
     boton_avanzar=image.load("imagenes/simbolos/flechita_YES.png") 
     boton_avanzar=transform.scale(boton_avanzar,(203,77))
     boton_avanzar_rect= boton_avanzar.get_rect(center = (ANCHO-203/2, 77/2))
+    boton_sonido=image.load("imagenes/simbolos/flechita_NOT.png")
+    boton_sonido=transform.scale(boton_retroceder_menu,(203,77))
+    boton_sonido_rect= boton_sonido.get_rect(center = (203/2, 77/2))
     # grafico puerta
     puerta_grafico = image.load(direccion_imagen) 
     puerta_grafico = transform.scale(puerta_grafico, (escala_grafico))
@@ -272,62 +275,73 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
                 clock_rect = armador_boton_rect(tipo_puerta, "clock", 1)
     resultado = [0]*cantidad_botones_output
     # sonido
-    mixer.music.load(direccion_narracion)
-    mixer.music.play(1)
+    #mixer.music.load(direccion_narracion)
+    #mixer.music.play(1)
     # banderas
     bandera_salida = True
     bandera = True
-    # bucle principal
+    # bucle que carga la música
     while bandera:
-        # Limita el bucle a 60 fotogramas por segundo
-        clock.tick(FPS)
-        # limpiar la pantalla
-        VENTANA.fill(BLANCO)
-        # dibujar la puerta logica
-        VENTANA.blit(puerta_grafico, puerta_grafico_rect)
-        # dibujar el texto de la imagen
-        VENTANA.blit(MAIN_FONT.render(f"{tipo_puerta.replace('_',' ')}", True, "black"), (ANCHO/2, 25)) # texto de la imagen
-        #dibujar los botones de navegacion:
-        VENTANA.blit(boton_retroceder_menu,boton_retroceder_rect_menu)
-        if modo_abierto==False:
-            VENTANA.blit(boton_avanzar,boton_avanzar_rect)       
-        # dibujar los botones
-        for i in range(cantidad_botones_input):
-            boton(VENTANA, botones_input_rect[i], botones_input_valor[i])
-        if puerta_logica_flip_flop_implementacion != "puerta_logica" and puerta_logica_flip_flop_implementacion != "implementacion":
-            if tipo_puerta != "rs_flip_flop":    
-                boton(VENTANA, clock_rect, valor_clock)
-        # eventos
-        pos_mouse = mouse.get_pos()
-        for evento in event.get():
-            if evento.type == QUIT:
-                sys.exit() 
-            if evento.type == MOUSEBUTTONDOWN:
-                print(pos_mouse)
-            if evento.type == MOUSEBUTTONDOWN and mouse.get_pressed()[0]:
-                for i in range(cantidad_botones_input):
-                    if botones_input_rect[i].collidepoint(pos_mouse):
-                        botones_input_valor[i] = puerta_not(botones_input_valor[i])
-                if boton_avanzar_rect.collidepoint(pos_mouse):
-                    bandera_salida = False
-                    bandera = False
-                if boton_retroceder_rect_menu.collidepoint(pos_mouse):
-                    bandera_salida = True
-                    bandera = False
-            if evento.type == temporizador: # temporizador 
-                valor_clock = actualizar_reloj(valor_clock) # actualziar el reloj por el valor 1 o 0
-                if valor_clock == 1 or puerta_logica_flip_flop_implementacion != "flip_flop":
-                    resultado = import_puertas(tipo_puerta, valor_clock , estado_anterior, *botones_input_valor)
-                    estado_anterior = resultado
+        mixer.music.load(direccion_narracion)
+        mixer.music.play(1)
+        boton_sonido=image.load("imagenes/simbolos/flechita_NOT.png")
+        boton_sonido=transform.scale(boton_retroceder_menu,(40,40))
+        boton_sonido_rect= boton_sonido.get_rect(center = (203/2, 77/2))
+        # bucle principal
+        while bandera:
+            # Limita el bucle a 60 fotogramas por segundo
+            clock.tick(FPS)
+            # limpiar la pantalla
+            VENTANA.fill(BLANCO)
+            # dibujar la puerta logica
+            VENTANA.blit(puerta_grafico, puerta_grafico_rect)
+            # dibujar el texto de la imagen
+            VENTANA.blit(MAIN_FONT.render(f"{tipo_puerta.replace('_',' ')}", True, "black"), (ANCHO/2, 25)) # texto de la imagen
+            #dibujar los botones de navegacion:
+            VENTANA.blit(boton_retroceder_menu,boton_retroceder_rect_menu)
+            if modo_abierto==False:
+                VENTANA.blit(boton_avanzar,boton_avanzar_rect)       
+            # dibujar los botones
+            for i in range(cantidad_botones_input):
+                boton(VENTANA, botones_input_rect[i], botones_input_valor[i])
+            if puerta_logica_flip_flop_implementacion != "puerta_logica" and puerta_logica_flip_flop_implementacion != "implementacion":
+                if tipo_puerta != "rs_flip_flop":    
+                    boton(VENTANA, clock_rect, valor_clock)
+            # eventos
+            pos_mouse = mouse.get_pos()
+            for evento in event.get():
+                if evento.type == QUIT:
+                    sys.exit() 
+                if evento.type == MOUSEBUTTONDOWN:
+                    print(pos_mouse)
+                if evento.type == MOUSEBUTTONDOWN and mouse.get_pressed()[0]:
+                    for i in range(cantidad_botones_input):
+                        if botones_input_rect[i].collidepoint(pos_mouse):
+                            botones_input_valor[i] = puerta_not(botones_input_valor[i])
+                    if boton_avanzar_rect.collidepoint(pos_mouse):
+                        bandera_salida = False
+                        bandera = False
+                        mixer.music.stop()
+                    if boton_retroceder_rect_menu.collidepoint(pos_mouse):
+                        bandera_salida = True
+                        bandera = False
+                        mixer.music.stop()
+                    if boton_sonido_rect.collidepoint(pos_mouse):
+                        mixer.music.stop()
+                if evento.type == temporizador: # temporizador 
+                    valor_clock = actualizar_reloj(valor_clock) # actualziar el reloj por el valor 1 o 0
+                    if valor_clock == 1 or puerta_logica_flip_flop_implementacion != "flip_flop":
+                        resultado = import_puertas(tipo_puerta, valor_clock , estado_anterior, *botones_input_valor)
+                        estado_anterior = resultado
+                    else:
+                        resultado = estado_anterior
+            for i in range(cantidad_botones_output):
+                if puerta_logica_flip_flop_implementacion == "puerta_logica":
+                    boton(VENTANA, botones_output[i], resultado)
                 else:
-                    resultado = estado_anterior
-        for i in range(cantidad_botones_output):
-            if puerta_logica_flip_flop_implementacion == "puerta_logica":
-                boton(VENTANA, botones_output[i], resultado)
-            else:
-                boton(VENTANA, botones_output[i], resultado[i])
-        display.update()
-    return bandera_salida
+                    boton(VENTANA, botones_output[i], resultado[i])
+            display.update()
+        return bandera_salida
 
 # funcion que simula los contadores
 def simulacion_contadores(cantidad_botones_input, cantidad_botones_output, direccion_imagen , tipo_puerta):
