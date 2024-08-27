@@ -258,9 +258,6 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
     boton_avanzar=image.load("imagenes/simbolos/flechita_YES.png") 
     boton_avanzar=transform.scale(boton_avanzar,(203,77))
     boton_avanzar_rect= boton_avanzar.get_rect(center = (ANCHO-203/2, 77/2))
-    boton_sonido=image.load("imagenes/simbolos/flechita_NOT.png")
-    boton_sonido=transform.scale(boton_retroceder_menu,(203,77))
-    boton_sonido_rect= boton_sonido.get_rect(center = (203/2, 77/2))
     # grafico puerta
     puerta_grafico = image.load(direccion_imagen) 
     puerta_grafico = transform.scale(puerta_grafico, (escala_grafico))
@@ -282,11 +279,12 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
     bandera = True
     # bucle que carga la música
     while bandera:
+        direccion_imagen_parlante="imagenes/simbolos/parlantito.png"
         mixer.music.load(direccion_narracion)
         mixer.music.play(1)
-        boton_sonido=image.load("imagenes/simbolos/flechita_NOT.png")
-        boton_sonido=transform.scale(boton_retroceder_menu,(40,40))
-        boton_sonido_rect= boton_sonido.get_rect(center = (203/2, 77/2))
+        boton_sonido=image.load(direccion_imagen_parlante)
+        boton_sonido=transform.scale(boton_sonido,(65,65))
+        boton_sonido_rect= boton_sonido.get_rect(center = (ANCHO-(65/2), ALTO-(65/2)))
         # bucle principal
         while bandera:
             # Limita el bucle a 60 fotogramas por segundo
@@ -299,6 +297,8 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
             VENTANA.blit(MAIN_FONT.render(f"{tipo_puerta.replace('_',' ')}", True, "black"), (ANCHO/2, 25)) # texto de la imagen
             #dibujar los botones de navegacion:
             VENTANA.blit(boton_retroceder_menu,boton_retroceder_rect_menu)
+            #dibujar el botón de sonido
+            VENTANA.blit(boton_sonido,boton_sonido_rect)
             if modo_abierto==False:
                 VENTANA.blit(boton_avanzar,boton_avanzar_rect)       
             # dibujar los botones
@@ -326,8 +326,19 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
                         bandera_salida = True
                         bandera = False
                         mixer.music.stop()
-                    if boton_sonido_rect.collidepoint(pos_mouse):
+                    if boton_sonido_rect.collidepoint(pos_mouse) and direccion_imagen_parlante=="imagenes/simbolos/parlantito.png":
                         mixer.music.stop()
+                        direccion_imagen_parlante="imagenes/simbolos/parlantito callado.png"
+                        boton_sonido=image.load(direccion_imagen_parlante)
+                        boton_sonido=transform.scale(boton_sonido,(65,65))
+                        boton_sonido_rect= boton_sonido.get_rect(center = (ANCHO-(65/2), ALTO-(65/2)))
+                        continue
+                    if boton_sonido_rect.collidepoint(pos_mouse) and direccion_imagen_parlante=="imagenes/simbolos/parlantito callado.png":
+                        mixer.music.play(1)
+                        direccion_imagen_parlante="imagenes/simbolos/parlantito.png"
+                        boton_sonido=image.load(direccion_imagen_parlante)
+                        boton_sonido=transform.scale(boton_sonido,(65,65))
+                        boton_sonido_rect= boton_sonido.get_rect(center = (ANCHO-(65/2), ALTO-(65/2)))
                 if evento.type == temporizador: # temporizador 
                     valor_clock = actualizar_reloj(valor_clock) # actualziar el reloj por el valor 1 o 0
                     if valor_clock == 1 or puerta_logica_flip_flop_implementacion != "flip_flop":
