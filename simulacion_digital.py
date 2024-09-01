@@ -225,7 +225,7 @@ def menu(ventana, ALTO, ANCHO):
             
 # inicializacion pygame
 init()
-
+mixer.init()
 # Configura el reloj
 clock = time.Clock()
 
@@ -233,6 +233,7 @@ clock = time.Clock()
 temporizador = USEREVENT + 1 # Evento personalizado que hace que funcione el reloj de los flip flops
 time.set_timer(temporizador, 500)  # Cambia el estado del botón cada medio segundo
 valor_clock = 0
+sonido = True
 
 # configuraciones generales y algunas constantes
 ALTO = 600
@@ -271,12 +272,21 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
                 global valor_clock
                 clock_rect = armador_boton_rect(tipo_puerta, "clock", 1)
     resultado = [0]*cantidad_botones_output
-    # sonido
-    mixer.music.load(direccion_narracion)
-    mixer.music.play(1)
+    global sonido
     # banderas
     bandera_salida = True
     bandera = True
+    # bucle que carga la música
+    if sonido:
+        direccion_imagen_parlante="imagenes/simbolos/parlantito.png"
+    else:
+        direccion_imagen_parlante="imagenes/simbolos/parlantito callado.png"
+    mixer.music.load(direccion_narracion)
+    if sonido:
+        mixer.music.play(1)
+    boton_sonido=image.load(direccion_imagen_parlante)
+    boton_sonido=transform.scale(boton_sonido,(65,65))
+    boton_sonido_rect= boton_sonido.get_rect(center = (ANCHO-(65/2), ALTO-(65/2)))
     # bucle principal
     while bandera:
         # Limita el bucle a 60 fotogramas por segundo
@@ -289,6 +299,8 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
         VENTANA.blit(MAIN_FONT.render(f"{tipo_puerta.replace('_',' ')}", True, "black"), (ANCHO/2, 25)) # texto de la imagen
         #dibujar los botones de navegacion:
         VENTANA.blit(boton_retroceder_menu,boton_retroceder_rect_menu)
+        #dibujar el botón de sonido
+        VENTANA.blit(boton_sonido,boton_sonido_rect)
         if modo_abierto==False:
             VENTANA.blit(boton_avanzar,boton_avanzar_rect)       
         # dibujar los botones
@@ -311,9 +323,23 @@ def simulacion(cantidad_botones_input, cantidad_botones_output, direccion_imagen
                 if boton_avanzar_rect.collidepoint(pos_mouse):
                     bandera_salida = False
                     bandera = False
+                    mixer.music.stop()
                 if boton_retroceder_rect_menu.collidepoint(pos_mouse):
                     bandera_salida = True
                     bandera = False
+                    mixer.music.stop()
+                if boton_sonido_rect.collidepoint(pos_mouse):
+                    if sonido:
+                        mixer.music.stop()
+                        direccion_imagen_parlante="imagenes/simbolos/parlantito callado.png"
+                        sonido = False
+                    elif not sonido:
+                        mixer.music.play(1)
+                        direccion_imagen_parlante="imagenes/simbolos/parlantito.png"
+                        sonido = True
+                    boton_sonido=image.load(direccion_imagen_parlante)
+                    boton_sonido=transform.scale(boton_sonido,(65,65))
+                    boton_sonido_rect= boton_sonido.get_rect(center = (ANCHO-(65/2), ALTO-(65/2)))
             if evento.type == temporizador: # temporizador 
                 valor_clock = actualizar_reloj(valor_clock) # actualziar el reloj por el valor 1 o 0
                 if valor_clock == 1 or puerta_logica_flip_flop_implementacion != "flip_flop":

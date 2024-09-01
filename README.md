@@ -210,6 +210,7 @@ C-->|no|E(salida=falso)
 
 </details>
 
+<<<<<<< Updated upstream
 ### puerta NAND
 
 <details><summary>explicacion</summary>
@@ -339,12 +340,17 @@ C-->|no|E(salida=verdadero)
 # implementaciones de las puertas lógicas 
 
 ***por hacer***
+=======
+# implementaciones de las puertas lógicas
+
+**por hacer**
+>>>>>>> Stashed changes
 
 ## Flip flops
 
 Los flip flops, biestables, o latch, son un circuito multivibrador(un tipo de circuito que puede generar una onda cuadrada), el cual pude almacenar 4 estados estables( estados en los cuales entrega información). Son las unidades básicas de memoria en lógica secuencial.
 
-*pongamosle que sacado de wikipedia, de momento porque el profe no dijo que tocaba que utilizar fuentes*
+**pongamosle que sacado de wikipedia, de momento porque el profe no dijo que tocaba que utilizar fuentes**
 
 <details><summary>RS flip flop (asincrono)</summary>
   
@@ -368,6 +374,7 @@ Los flip flops, biestables, o latch, son un circuito multivibrador(un tipo de ci
 </table>
 <br>
 
+<<<<<<< Updated upstream
 #### Explicación: 
 Los flip flops RS asíncronos (sin reloj), son aquellos que pueden tener 4 estados, uno de set(o ajuste), uno de memoria(correspondiente al anterior), uno de reset(reajuste o borrado), el cual invierte las salidas del estado de set, junto con su correspondiente estado de memoria. Y un estado indeterminado( en el cuál no se cumple la condición de inversión entre Q y Q', y puede variar según los componentes empleados para construir el flip flop).
 
@@ -382,6 +389,10 @@ flowchart TD
     C --> E[se calcula q y q_inverso]
     E --> F[return q y q_inverso]
 ```
+=======
+- Explicación: Los flip flops RS asíncronos (sin reloj), son aquellos que pueden tener 4 estados, uno de set(o ajuste), uno de memoria(correspondiente al anterior), uno de reset(reajuste o borrado), el cual invierte las salidas del estado de set, junto con su correspondiente estado de memoria. Y un estado indeterminado( en el cuál no se cumple la condición de inversión entre Q y Q', y puede variar según los componentes empleados para construir el flip flop).
+
+>>>>>>> Stashed changes
 </details>
 
 
