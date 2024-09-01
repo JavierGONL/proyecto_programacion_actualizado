@@ -162,52 +162,7 @@ def multiplicador_4bits(a0,a1,b0,b1):
 
 def divisor_4_Bits(a0, a1, b0, b1):
     pass
-def alu(s0,s1,s2,s3,b3,a3,b2,a2,b1,a1,b0,a0,m,cn): # m = modo de operacion, cn = acarreo inicial
-    def conjunto_puertas1(a,b):
-        x1=puerta_and(b,s3,a)
-        x2=puerta_and(a,s2,puerta_not(b))
-        x3=puerta_and(puerta_not(b),s1)
-        x4=puerta_and(s0,b)
-        x5=puerta_and(a)
-        r1=puerta_nor(x1,x2)
-        r2=puerta_nor(x3,x4,x5)
-        return r1,r2
-    x1,x2=conjunto_puertas1(a3,b3)
-    y1,y2=conjunto_puertas1(a2,b2)
-    z1,z2=conjunto_puertas1(a1,b1)
-    w1,w2=conjunto_puertas1(a0,b0)
-    a=puerta_and(x2)
-    b=puerta_and(x1,y2)
-    c=puerta_and(x1,y1,z2)
-    d=puerta_and(x1,y1,z1,w2)
-    e=puerta_nand(x1,y1,z1,w1,cn)
-    f=puerta_nand(x1,y1,z1,w1)
-    g=puerta_xor(x1,x2)
-    h=puerta_and(cn,w1,z1,y1,puerta_not(m))
-    i=puerta_and(z1,y1,w2,puerta_not(m))
-    j=puerta_and(y1,z2,puerta_not(m))
-    k=puerta_and(y2,puerta_not(m))
-    l=puerta_xor(y1,y2)
-    n=puerta_and(cn,w1,z1,puerta_not(m))
-    o=puerta_and(z1,w2,puerta_not(m))
-    p=puerta_and(z2,puerta_not(m))
-    q=puerta_xor(z1,z2)
-    r=puerta_and(cn,w1,puerta_not(m))
-    s=puerta_and(w2,puerta_not(m))
-    t=puerta_xor(w1,w2)
-    u=puerta_nand(cn,puerta_not(m))
-    G=puerta_nor(a,b,c,d)
-    cn4=puerta_nor(puerta_not(Result1),puerta_not(e))
-    pne=f
-    pr1=puerta_nor(h,i,j,k)
-    f3=puerta_xor(g,pr1)
-    pr2=puerta_nor(n,o,p)
-    f2=puerta_xor(l,pr2)
-    pr3=puerta_nor(r,s)
-    f1=puerta_xor(q,pr3)
-    f0=puerta_xor(t,u)
-    ab=puerta_and(f3,f2,f1,f0)
-    return G,cn4,pne,f3,f2,f1,f0,ab
+
 def comparador_2_bits(a0, a1, b0, b1):
     # #x=resultados del igual
     # #y= resultantes del menor
