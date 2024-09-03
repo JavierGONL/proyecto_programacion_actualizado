@@ -396,11 +396,23 @@ C-->|no|E(salida=verdadero)
   </tr>
 </table>
 <br>
-=======
-# implementaciones de las puertas lógicas
+#### Explicación:
 
-**por hacer**
->>>>>>> Stashed changes
+La puerta NOR considera 2 entradas y una única salida en función de las entradas; al tratarse de la negación de la puerta OR, esta se enciende únicamente si ambas entradas están encendidas. Se puede construir como una puerta OR seguida de una puerta NOT.
+
+#### Esta puerta se programo de la siguiente forma:
+
+```mermaid
+flowchart TD
+A(Puerta NOR)-->B[Establecer valores lógicos, como 0=falso y 1=verdadero siendo inversos]
+B-->F[Establecer un número n de entradas]
+F-->C{¿Alguna de las entradas es verdadera?}
+C-->|sí|D(salida=falso)
+C-->|no|E(salida=verdadero)
+```
+
+
+</details>
 
 ## Flip flops
 
