@@ -479,17 +479,17 @@ def recopilatorio_simulaciones(puerta_logica_flip_flop_implementacion):
     elif puerta_logica_flip_flop_implementacion == "t_flip_flop":
         valor = simulacion(1, 2, "imagenes\\flip_flops\\t_flip_flop.png", "t_flip_flop", "flip_flop","narraciones\\T_flip_flop.mp3")
     elif puerta_logica_flip_flop_implementacion == "semi_sumador":
-        valor = simulacion(2, 2, "imagenes\\implementaciones\\semi_sumador.png", "semi_sumador", "implementacion","narraciones/NOT.mp3") #crear todo a partir de acá
+        valor = simulacion(2, 2, "imagenes\\implementaciones\\semi_sumador.png", "semi_sumador", "implementacion","narraciones\\semisumador.mp3") #crear todo a partir de acá
     elif puerta_logica_flip_flop_implementacion == "semi_substractor":
-        valor = simulacion(2, 2, "imagenes\\implementaciones\\semi_substractor.png", "semi_substractor", "implementacion","narraciones/NOT.mp3")
+        valor = simulacion(2, 2, "imagenes\\implementaciones\\semi_substractor.png", "semi_substractor", "implementacion","narraciones\\semisubstractor.mp3")
     elif puerta_logica_flip_flop_implementacion == "sumador_total":
-        valor = simulacion(3, 2, "imagenes\\implementaciones\\sumador_total.png", "sumador_total", "implementacion","narraciones/NOT.mp3")
+        valor = simulacion(3, 2, "imagenes\\implementaciones\\sumador_total.png", "sumador_total", "implementacion","narraciones\\sumador_total.mp3")
     elif puerta_logica_flip_flop_implementacion == "restador_total":
-        valor = simulacion(3, 2, "imagenes\\implementaciones\\restador_total.png", "restador_total", "implementacion","narraciones/NOT.mp3")
+        valor = simulacion(3, 2, "imagenes\\implementaciones\\restador_total.png", "restador_total", "implementacion","narraciones\\restador_total.mp3")
     elif puerta_logica_flip_flop_implementacion == "multiplicador_4bits":
-        valor = simulacion(4, 4, "imagenes\\implementaciones\\multiplicador_4bits.png", "multiplicador_4bits", "implementacion","narraciones/NOT.mp3")
+        valor = simulacion(4, 4, "imagenes\\implementaciones\\multiplicador_4bits.png", "multiplicador_4bits", "implementacion","narraciones\\multiplicador.mp3")
     elif puerta_logica_flip_flop_implementacion == "comparador_2_bits":
-        valor = simulacion(4, 3, "imagenes\\implementaciones\\comparador_2_bits.png", "comparador_2_bits", "implementacion","narraciones/NOT.mp3")
+        valor = simulacion(4, 3, "imagenes\\implementaciones\\comparador_2_bits.png", "comparador_2_bits", "implementacion","narraciones\\comparador_2_bits.mp3")
     elif puerta_logica_flip_flop_implementacion == "contador_4_bits":
         valor = simulacion_contadores(1, 5, "imagenes\\flip_flops\\contador_4_bits.png", "contador_4_bits")
     elif puerta_logica_flip_flop_implementacion == "contador_8_bits":
