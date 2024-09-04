@@ -413,6 +413,7 @@ C-->|no|E(salida=verdadero)
 
 
 </details>
+
 ### Multiplicador 4 bits
 <details><summary>explicacion</summary>
   
@@ -488,6 +489,7 @@ C-->|no|E(salida=verdadero)
 
 
 </details>
+
 ### Restador total
 <details><summary>explicacion</summary>
   
@@ -563,6 +565,7 @@ C-->|no|E(salida=verdadero)
 
 
 </details>
+
 ### Semi substractor
 <details><summary>explicacion</summary>
   
@@ -638,6 +641,7 @@ C-->|no|E(salida=verdadero)
 
 
 </details>
+
 ### semi sumador
 <details><summary>explicacion</summary>
   
@@ -713,6 +717,7 @@ C-->|no|E(salida=verdadero)
 
 
 </details>
+
 ### Sumador total
 <details><summary>explicacion</summary>
   
@@ -788,6 +793,7 @@ C-->|no|E(salida=verdadero)
 
 
 </details>
+
 ### Contador 4 bits
 <details><summary>explicacion</summary>
   
@@ -863,6 +869,7 @@ C-->|no|E(salida=verdadero)
 
 
 </details>
+
 ### Contador 8 bits
 <details><summary>explicacion</summary>
   
