@@ -477,7 +477,7 @@ C-->|A es igual que B|G(la tercera salida se volvera 1 y todas las demas se mant
       
 #### Explicación:
 
-Un multiplicador de 4 bits es un circuito digital que nos entrega el producto de la multiplicacion de 2 pares de bits (a y b), este producto estar acompuesto por 4 bits
+Un multiplicador de 4 bits es un circuito digital que nos entrega el producto de la multiplicacion de 2 pares de bits (a y b), este producto estará compuesto por 4 bits
 
 #### Esta puerta se programo de la siguiente forma:
 
@@ -580,7 +580,7 @@ Z-->|x3=1|M(El prestamo de salida sera igual a 1)
       
 #### Explicación:
 
-El semisubstractor es un circuito digitial que resta 2 entradas (a y b) y nos entrega el resultado de la resta y su prestamo .
+El semisubstractor es un circuito digital que resta 2 entradas (a y b) y nos entrega el resultado de la resta y su prestamo .
 
 #### Este circuito se programo de la siguiente forma:
 
