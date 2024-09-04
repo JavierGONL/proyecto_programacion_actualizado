@@ -699,72 +699,74 @@ E-->|x1=1|Z(el acarreo es igual a 1)
   #### tabla de verdad:
   <table>
      <tr>
-    <td> a1 </td> <td> a0 </td> <td> b1 </td> <td> b0 </td> <td> A">"B </td> <td> A"<"B </td> <td> A"="B </td>
+    <td> Q0 </td> <td> Q1 </td> <td> Q2 </td> <td> Q3 </td> <td> Count </td>
   </tr>
   <tr>
-    <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
+    <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> 
   </tr>
   <tr>
-    <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
+    <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> 
   </tr>
      <tr>
-    <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
+    <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 2 </td> 
   </tr>
      <tr>
-    <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
+    <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 3 </td> 
   </tr>
        <tr>
-    <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
+    <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 4 </td> 
   </tr>
        <tr>
-    <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
+    <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 5 </td> 
   </tr>
        <tr>
-    <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
+    <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 6 </td> 
   </tr>
        <tr>
-    <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
+    <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 7 </td> 
   </tr>
        <tr>
-    <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
+    <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 8 </td> 
   </tr>
        <tr>
-    <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
+    <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 9 </td> 
   </tr>
        <tr>
-    <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
+    <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 10 </td> 
   </tr>
        <tr>
-    <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
+    <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 11 </td> 
   </tr>
        <tr>
-    <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
+    <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 12 </td> 
   </tr>
        <tr>
-    <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
+    <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 13 </td> 
   </tr>
        <tr>
-    <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
+    <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 14 </td> 
   </tr>
        <tr>
-    <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
+    <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 15 </td> 
   </tr>
 </table>
 <br>
       
 #### Explicación:
 
-La puerta NOR considera 2 entradas y una única salida en función de las entradas; al tratarse de la negación de la puerta OR, esta se enciende únicamente si ambas entradas están encendidas. Se puede construir como una puerta OR seguida de una puerta NOT.
+El contador de 4 bits es un circuito digital que nos permite a partir de 4 flip flops hacer una cuenta hasta cierto numero, siendo en este caso 15.
 
-#### Esta puerta se programo de la siguiente forma:
+#### Este circuito se programo de la siguiente forma:
 
 ```mermaid
 flowchart TD
-A(Puerta NOR)-->B[Establecer valores lógicos, como 0=falso y 1=verdadero siendo inversos]
-B-->F[Establecer un número n de entradas]
-F-->C{¿Alguna de las entradas es verdadera?}
-C-->|sí|D(salida=falso)
-C-->|no|E(salida=verdadero)
+A(Scontador de 4 bits)-->B[Establecer los valores logicos, teniendo a 0 como falso y 1 como verdadero]
+B-->F[Se plantea la cantidad de 4 entradas para los valores a resultantes de los flip flops, estos seran valores binarios]
+F-->P[Se evalua el resultado binario y se transforma a centesimal,entregando este valor como salida]
+P-->|Q3=1|E[Se suma 1 al resultado centesimal]
+P-->|Q2=1|G[Se suma 2 al resultado centesimal]
+P-->|Q1=1|C[Se suma 4 al resultado centesimal]
+P-->|Q0=1|D[Se suma 8 al resultado centesimal]
 ```
 
 
