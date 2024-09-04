@@ -483,16 +483,16 @@ Un multiplicador de 4 bits es un circuito digital que nos entrega el producto de
 
 ```mermaid
 flowchart TD
-A(comparador de 2 bits)-->B[Establecer los valores logicos, teniendo a 0 como falso y 1 como verdadero]
+A(Multiplicador de 4 bits)-->B[Establecer los valores logicos, teniendo a 0 como falso y 1 como verdadero]
 B-->F[Se plantea la cantidad de 4 entradas, una para uno de los 2 pares de bits]
 F-->P[Se realizar una puerta and en ciertos valores A0 y B0=K1, A1 y B1=K2, A1 y B0=k3]
-p-->C{¿que resultado nos dara k1, k2 y k3?}
-C-->|k1=1|D(M0 sera 1)|
+P-->C{¿que resultado nos dara k1, k2 y k3?}
+C-->|k1=1|D(M0 sera 1)
 C-->G[Se realizara una puerta XOR=l1 y una puerta AND=l2 ENTRE K1 Y K2 como entrada de ambas]
-G-->|l1=1|E(M1=1)|
+G-->|l1=1|E(M1=1)
 G-->Z[Se realiza ahora otra puerta XOR=z1 y And=z2 entre l2 y k2]
-Z-->|Z1=1|M(M2=1)|
-Z-->|Z2=1|N(M3=1)|
+Z-->|Z1=1|M(M2=1)
+Z-->|Z2=1|N(M3=1)
 ```
 
 
@@ -504,72 +504,52 @@ Z-->|Z2=1|N(M3=1)|
   #### tabla de verdad:
   <table>
      <tr>
-    <td> a1 </td> <td> a0 </td> <td> b1 </td> <td> b0 </td> <td> A">"B </td> <td> A"<"B </td> <td> A"="B </td>
+    <td> A </td> <td> B </td> <td> C </td> <td> Difference </td> <td> Borrow 
   </tr>
   <tr>
-    <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
+    <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> 
   </tr>
   <tr>
-    <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
+    <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> 
   </tr>
      <tr>
-    <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
+    <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> 
   </tr>
      <tr>
-    <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
+    <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> 
   </tr>
        <tr>
-    <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
+    <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> 
   </tr>
        <tr>
-    <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
+    <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> 
   </tr>
        <tr>
-    <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
+    <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> 
   </tr>
        <tr>
-    <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
+    <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> 
   </tr>
 </table>
 <br>
       
 #### Explicación:
 
-La puerta NOR considera 2 entradas y una única salida en función de las entradas; al tratarse de la negación de la puerta OR, esta se enciende únicamente si ambas entradas están encendidas. Se puede construir como una puerta OR seguida de una puerta NOT.
+El restador total es un circuito ditigal que tomando 3 entradas (A: Minuendo, B: Sustraendo, C: Prestamo de entrada) para regresar 2 salidas (Diferencia y prestamo de salida).
 
-#### Esta puerta se programo de la siguiente forma:
+#### Este circuito se programo de la siguiente forma:
 
 ```mermaid
 flowchart TD
-A(Puerta NOR)-->B[Establecer valores lógicos, como 0=falso y 1=verdadero siendo inversos]
-B-->F[Establecer un número n de entradas]
-F-->C{¿Alguna de las entradas es verdadera?}
-C-->|sí|D(salida=falso)
-C-->|no|E(salida=verdadero)
+A(Restador total)-->B[Establecer los valores logicos, teniendo a 0 como falso y 1 como verdadero]
+B-->F[Se plantea la cantidad de 3 entradas para los valores a restar y un valor de prestamo]
+F-->P[Se realiza una puerta XOR entre b y c=K1]
+F-->C[Se realiza una puerta AND entre el negado de b y c=K2]
+P-->D
+C-->D[Se realizan 2 puertas logicas, un XOR entre a y k1=x1, un AND entre a y el negado de K1=x2]
+D-->|x1=1|G(La salida diferencia sera igual a 1)
+D-->Z[Se realiza una puerta or entre x2 y k2=x3]
+Z-->|x3=1|M(El prestamo de salida sera igual a 1)
 ```
 
 
@@ -581,72 +561,36 @@ C-->|no|E(salida=verdadero)
   #### tabla de verdad:
   <table>
      <tr>
-    <td> a1 </td> <td> a0 </td> <td> b1 </td> <td> b0 </td> <td> A">"B </td> <td> A"<"B </td> <td> A"="B </td>
+    <td> A </td> <td> B </td> <td> Diferencia </td> <td> Borrow </td> 
   </tr>
   <tr>
-    <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
+    <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> 
   </tr>
   <tr>
-    <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
+    <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> 
   </tr>
      <tr>
-    <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
+    <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> 
   </tr>
      <tr>
-    <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
-  </tr>
-       <tr>
-    <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
+    <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> 
   </tr>
 </table>
 <br>
       
 #### Explicación:
 
-La puerta NOR considera 2 entradas y una única salida en función de las entradas; al tratarse de la negación de la puerta OR, esta se enciende únicamente si ambas entradas están encendidas. Se puede construir como una puerta OR seguida de una puerta NOT.
+El semisubstractor es un circuito digitial que resta 2 entradas (a y b) y nos entrega el resultado de la resta y su prestamo .
 
-#### Esta puerta se programo de la siguiente forma:
+#### Este circuito se programo de la siguiente forma:
 
 ```mermaid
 flowchart TD
-A(Puerta NOR)-->B[Establecer valores lógicos, como 0=falso y 1=verdadero siendo inversos]
-B-->F[Establecer un número n de entradas]
-F-->C{¿Alguna de las entradas es verdadera?}
-C-->|sí|D(salida=falso)
-C-->|no|E(salida=verdadero)
+A(semi substractor)-->B[Establecer los valores logicos, teniendo a 0 como falso y 1 como verdadero]
+B-->F[Se plantea la cantidad de 2 entradas para los valores a restar]
+F-->P[Se realiza una puerta XOR entre a y b=K1 y una puerta AND entre el negado de a y b=k2]
+P-->|k1=1|C(La diferencia sera igual a 1)
+P-->|k2=1|D(El prestamo sera igual a 1)
 ```
 
 
@@ -658,72 +602,37 @@ C-->|no|E(salida=verdadero)
   #### tabla de verdad:
   <table>
      <tr>
-    <td> a1 </td> <td> a0 </td> <td> b1 </td> <td> b0 </td> <td> A">"B </td> <td> A"<"B </td> <td> A"="B </td>
+    <td> a </td> <td> b </td> <td> acarreo </td> <td> salida </td>
   </tr>
   <tr>
-    <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
+    <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td>
   </tr>
   <tr>
-    <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
+    <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td>
   </tr>
      <tr>
-    <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
+    <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
   </tr>
      <tr>
-    <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
+    <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td>
   </tr>
-       <tr>
-    <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
-  </tr>
-       <tr>
-    <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
-  </tr>
+
 </table>
 <br>
       
 #### Explicación:
 
-La puerta NOR considera 2 entradas y una única salida en función de las entradas; al tratarse de la negación de la puerta OR, esta se enciende únicamente si ambas entradas están encendidas. Se puede construir como una puerta OR seguida de una puerta NOT.
+El semisumador es un circuito digital que permite ingresar 2 bits a modo de entrada (a y b) y entrega una salida y un posible acarreo.
 
-#### Esta puerta se programo de la siguiente forma:
+#### Esta circuito digital se programo de la siguiente forma:
 
 ```mermaid
 flowchart TD
-A(Puerta NOR)-->B[Establecer valores lógicos, como 0=falso y 1=verdadero siendo inversos]
-B-->F[Establecer un número n de entradas]
-F-->C{¿Alguna de las entradas es verdadera?}
-C-->|sí|D(salida=falso)
-C-->|no|E(salida=verdadero)
+A(semi sumador)-->B[Establecer los valores logicos, teniendo a 0 como falso y 1 como verdadero]
+B-->F[Se plantea la cantidad de 2 entradas para los valores a sumar]
+F-->P[Se realiza una puerta XOR entre a y b=K1 y una puerta AND entre el a y b=k2]
+P-->|k1=1|C(La salida sera igual a 1)
+P-->|k2=1|D(El acarreo sera igual a 1)
 ```
 
 
@@ -735,72 +644,50 @@ C-->|no|E(salida=verdadero)
   #### tabla de verdad:
   <table>
      <tr>
-    <td> a1 </td> <td> a0 </td> <td> b1 </td> <td> b0 </td> <td> A">"B </td> <td> A"<"B </td> <td> A"="B </td>
+    <td> A </td> <td> B </td> <td> C </td> <td> Acarreo </td> <td> Salida </td>
   </tr>
   <tr>
-    <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
+    <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> 
   </tr>
   <tr>
-    <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
+    <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> 
   </tr>
      <tr>
-    <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
+    <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> 
   </tr>
      <tr>
-    <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
+    <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> 
   </tr>
        <tr>
-    <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
+    <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> 
   </tr>
        <tr>
-    <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
+    <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> 
   </tr>
        <tr>
-    <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
+    <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> 
   </tr>
        <tr>
-    <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
+    <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> 
   </tr>
 </table>
 <br>
       
 #### Explicación:
 
-La puerta NOR considera 2 entradas y una única salida en función de las entradas; al tratarse de la negación de la puerta OR, esta se enciende únicamente si ambas entradas están encendidas. Se puede construir como una puerta OR seguida de una puerta NOT.
+El sumador total es un circuito digital el cual al recibir 3 entradas (a,b y el acarreo) nos devuelve 2 salidas, la suma y su acarreo.
 
-#### Esta puerta se programo de la siguiente forma:
+#### Este circuito digital se programo de la siguiente forma:
 
 ```mermaid
 flowchart TD
-A(Puerta NOR)-->B[Establecer valores lógicos, como 0=falso y 1=verdadero siendo inversos]
-B-->F[Establecer un número n de entradas]
-F-->C{¿Alguna de las entradas es verdadera?}
-C-->|sí|D(salida=falso)
-C-->|no|E(salida=verdadero)
+A(Sumador total)-->B[Establecer los valores logicos, teniendo a 0 como falso y 1 como verdadero]
+B-->F[Se plantea la cantidad de 3 entradas para los valores a sumar y un valor de prestamo]
+F-->P[Se realiza una puerta XOR entre a y b=K1]
+P-->C[Se realiza una puerta XOR entre k1 y c=l1, una puerta And entre c y k1=l2 y una puerta and entre a y b=l3]
+C-->|l1=1|D(la salida es igual a 1)
+C-->E[Se aplica una puerta or entre l2 y l3=x1]
+E-->|x1=1|Z(el acarreo es igual a 1)
 ```
 
 
