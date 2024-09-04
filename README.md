@@ -477,17 +477,22 @@ C-->|A es igual que B|G(la tercera salida se volvera 1 y todas las demas se mant
       
 #### Explicación:
 
-La puerta NOR considera 2 entradas y una única salida en función de las entradas; al tratarse de la negación de la puerta OR, esta se enciende únicamente si ambas entradas están encendidas. Se puede construir como una puerta OR seguida de una puerta NOT.
+Un multiplicador de 4 bits es un circuito digital que nos entrega el producto de la multiplicacion de 2 pares de bits (a y b), este producto estar acompuesto por 4 bits
 
 #### Esta puerta se programo de la siguiente forma:
 
 ```mermaid
 flowchart TD
-A(Puerta NOR)-->B[Establecer valores lógicos, como 0=falso y 1=verdadero siendo inversos]
-B-->F[Establecer un número n de entradas]
-F-->C{¿Alguna de las entradas es verdadera?}
-C-->|sí|D(salida=falso)
-C-->|no|E(salida=verdadero)
+A(comparador de 2 bits)-->B[Establecer los valores logicos, teniendo a 0 como falso y 1 como verdadero]
+B-->F[Se plantea la cantidad de 4 entradas, una para uno de los 2 pares de bits]
+F-->P[Se realizar una puerta and en ciertos valores A0 y B0=K1, A1 y B1=K2, A1 y B0=k3]
+p-->C{¿que resultado nos dara k1, k2 y k3?}
+C-->|k1=1|D(M0 sera 1)|
+C-->G[Se realizara una puerta XOR=l1 y una puerta AND=l2 ENTRE K1 Y K2 como entrada de ambas]
+G-->|l1=1|E(M1=1)|
+G-->Z[Se realiza ahora otra puerta XOR=z1 y And=z2 entre l2 y k2]
+Z-->|Z1=1|M(M2=1)|
+Z-->|Z2=1|N(M3=1)|
 ```
 
 
