@@ -776,74 +776,27 @@ P-->|Q0=1|D[Se suma 8 al resultado centesimal]
 <details><summary>explicacion</summary>
   
   #### tabla de verdad:
-  <table>
-     <tr>
-    <td> a1 </td> <td> a0 </td> <td> b1 </td> <td> b0 </td> <td> A">"B </td> <td> A"<"B </td> <td> A"="B </td>
-  </tr>
-  <tr>
-    <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
-  </tr>
-  <tr>
-    <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
-  </tr>
-     <tr>
-    <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
-  </tr>
-     <tr>
-    <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
-  </tr>
-       <tr>
-    <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td>
-  </tr>
-       <tr>
-    <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 1 </td> <td> 0 </td> <td> 0 </td> <td> 1 </td>
-  </tr>
-</table>
-<br>
+- El contador de 8 bits comparte el mismo sistema que el de 4, solo que esta vez llega hasta el numero 255.
       
 #### Explicación:
 
-La puerta NOR considera 2 entradas y una única salida en función de las entradas; al tratarse de la negación de la puerta OR, esta se enciende únicamente si ambas entradas están encendidas. Se puede construir como una puerta OR seguida de una puerta NOT.
+El contador de 8 bits esta vez consdiera 8 entradas, cada una representado un posible bit que se intentara representar como un numero centesimal.
 
 #### Esta puerta se programo de la siguiente forma:
 
 ```mermaid
 flowchart TD
-A(Puerta NOR)-->B[Establecer valores lógicos, como 0=falso y 1=verdadero siendo inversos]
-B-->F[Establecer un número n de entradas]
-F-->C{¿Alguna de las entradas es verdadera?}
-C-->|sí|D(salida=falso)
-C-->|no|E(salida=verdadero)
+A(Scontador de 4 bits)-->B[Establecer los valores logicos, teniendo a 0 como falso y 1 como verdadero]
+B-->F[Se plantea la cantidad de 4 entradas para los valores a resultantes de los flip flops, estos seran valores binarios]
+F-->P[Se evalua el resultado binario y se transforma a centesimal,entregando este valor como salida]
+P-->|Q7=1|E[Se suma 1 al resultado centesimal]
+P-->|Q6=1|G[Se suma 2 al resultado centesimal]
+P-->|Q5=1|C[Se suma 4 al resultado centesimal]
+P-->|Q4=1|D[Se suma 8 al resultado centesimal]
+P-->|Q3=1|H[Se suma 16 al resultado centesimal]
+P-->|Q2=1|I[Se suma 32 al resultado centesimal]
+P-->|Q1=1|J[Se suma 64 al resultado centesimal]
+P-->|Q0=1|K[Se suma 128 al resultado centesimal]
 ```
 
 
