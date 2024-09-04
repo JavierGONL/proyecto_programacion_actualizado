@@ -408,9 +408,9 @@ flowchart TD
 A(comparador de 2 bits)-->B[Establecer los valores logicos, teniendo a 0 como falso y 1 como verdadero]
 B-->F[Se plantea la cantidad de 4 entradas, una para uno de los 2 bits de los bits a y b que se compararan]
 F-->C{¿que resultado dio la comparacion de los valores de los bits a y b?}
-C-->|A es mayor que B|D(la salida "A>B" se volvera 1 y todas las demas se mantendran como 0)
-C-->|A es menor que B|E(la salida "A<B" se volvera 1 y todas las demas se mantendran como 0)
-C-->|A es igual que B|F(la salida "A=B" se volvera 1 y todas las demas se mantendran como 0)
+C-->|A es mayor que B|D(la primera salida se volvera 1 y todas las demas se mantendran como 0)
+C-->|A es menor que B|E(la segunda salida se volvera 1 y todas las demas se mantendran como 0)
+C-->|A es igual que B|F(la tercera salida se volvera 1 y todas las demas se mantendran como 0)
 ```
 
 
